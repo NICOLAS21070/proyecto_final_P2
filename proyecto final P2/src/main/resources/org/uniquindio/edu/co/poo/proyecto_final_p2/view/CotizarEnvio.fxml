@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.CotizarEnvioController"
+            prefWidth="800" prefHeight="600"
+            style="-fx-background-color: #F5F5F5;">
+
+    <VBox spacing="20" alignment="CENTER" prefWidth="800" prefHeight="600">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <Label text="📦 Cotizar Envío"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+        <!-- Formulario de datos -->
+        <GridPane hgap="15" vgap="15" alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" prefWidth="200"/>
+                <ColumnConstraints halignment="LEFT" prefWidth="300"/>
+            </columnConstraints>
+
+            <!-- ✅ Campo Origen (ComboBox) -->
+            <Label text="Origen:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbOrigen" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Armenia"/>
+                        <String fx:value="Pereira"/>
+                        <String fx:value="Calarcá"/>
+                        <String fx:value="Circasia"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <!-- ✅ Campo Destino (ComboBox) -->
+            <Label text="Destino:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbDestino" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Armenia"/>
+                        <String fx:value="Pereira"/>
+                        <String fx:value="Calarcá"/>
+                        <String fx:value="Circasia"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <Label text="Peso (kg):" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPeso" promptText="Ej: 2.5" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Volumen (m³):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtVolumen" promptText="Ej: 0.03" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Prioridad:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <ChoiceBox fx:id="cbPrioridad" GridPane.rowIndex="4" GridPane.columnIndex="1">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Normal"/>
+                        <String fx:value="Urgente"/>
+                        <String fx:value="Exprés"/>
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+        </GridPane>
+
+        <!-- Servicios adicionales -->
+        <TitledPane text="Servicios Adicionales" expanded="true" prefWidth="500">
+            <VBox spacing="8">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <CheckBox fx:id="chkSeguro" text="Seguro de envío"/>
+                <CheckBox fx:id="chkFragil" text="Paquete frágil"/>
+                <CheckBox fx:id="chkFirma" text="Requiere firma de entrega"/>
+                <CheckBox fx:id="chkPrioridadExtra" text="Prioridad adicional"/>
+            </VBox>
+        </TitledPane>
+
+        <!-- Botón de cálculo -->
+        <Button fx:id="btnCalcular" text="Calcular Tarifa"
+                onAction="#calcularTarifa"
+                style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25;"/>
+
+        <Button text="Crear Envío"
+                onAction="#crearEnvioDesdeCotizacion"
+                style="-fx-background-color: #28A745; -fx-text-fill: white; -fx-font-weight: bold;"
+                prefWidth="140" prefHeight="35"/>
+
+        <!-- Resultado -->
+        <VBox fx:id="panelResultado" visible="false" spacing="10" alignment="CENTER"
+              style="-fx-background-color: #E3F2FD; -fx-padding: 15; -fx-border-color: #1976D2; -fx-border-radius: 5;">
+            <Label text="Resultado de la Cotización" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+            <Label fx:id="lblCosto" text="Costo: $0.00" style="-fx-font-size: 14;"/>
+        </VBox>
+
+        <Button text="⬅ Volver" onAction="#volver"
+                style="-fx-background-color: #0078D7; -fx-text-fill: white;"/>
+    </VBox>
+</AnchorPane>

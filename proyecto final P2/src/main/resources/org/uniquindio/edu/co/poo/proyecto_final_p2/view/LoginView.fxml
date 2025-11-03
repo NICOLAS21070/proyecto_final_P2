@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.LoginController"
+            prefWidth="500" prefHeight="400"
+            style="-fx-background-color: linear-gradient(to bottom, #e3f2fd, #bbdefb);">
+
+    <children>
+        <VBox alignment="CENTER" spacing="15.0" layoutX="70" layoutY="50" prefWidth="360">
+            <padding>
+                <Insets top="40" right="30" bottom="40" left="30"/>
+            </padding>
+
+            <!-- Título -->
+            <Label text="Sistema Logístico - Login"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #0d47a1;"/>
+
+            <Separator prefWidth="200"/>
+
+            <!-- Tipo de usuario -->
+            <Label text="Tipo de usuario:" style="-fx-font-size: 14px;"/>
+            <ChoiceBox fx:id="cbTipoUsuario" prefWidth="200"/>
+
+            <!-- Usuario -->
+            <Label text="Usuario:" style="-fx-font-size: 14px;"/>
+            <TextField fx:id="txtUsuario" promptText="Ingrese su usuario" prefWidth="250"/>
+
+            <!-- Contraseña -->
+            <Label text="Contraseña:" style="-fx-font-size: 14px;"/>
+            <PasswordField fx:id="txtPassword" promptText="Ingrese su contraseña" prefWidth="250"/>
+
+            <!-- Botón de ingreso -->
+            <Button fx:id="btnLogin" text="Ingresar"
+                    style="-fx-background-color: #1976d2; -fx-text-fill: white; -fx-font-weight: bold;"
+                    prefWidth="150"
+                    onAction="#ingresar"/>
+
+            <!-- Mensaje -->
+            <Label fx:id="lblMensaje" textFill="red" wrapText="true" prefWidth="250"
+                   style="-fx-font-size: 13px;"/>
+
+        </VBox>
+    </children>
+</AnchorPane>

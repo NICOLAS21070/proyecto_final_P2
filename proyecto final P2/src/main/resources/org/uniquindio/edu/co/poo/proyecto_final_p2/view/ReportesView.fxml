@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.ReportesController"
+      alignment="CENTER"
+      spacing="15"
+      padding="20"
+      style="-fx-background-color: #F3E5F5;">
+
+    <Label text="📈 Reportes del Sistema"
+           style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="15" alignment="CENTER">
+        <Button fx:id="btnActualizar" text="Actualizar Datos"
+                style="-fx-background-color: #7B1FA2; -fx-text-fill: white;"/>
+        <Button fx:id="btnVolver" text="Volver al Menú"
+                style="-fx-background-color: #9E9E9E;"/>
+    </HBox>
+
+    <BarChart fx:id="graficoEnvios"
+              title="Cantidad de Envíos por Estado"
+              prefWidth="500" prefHeight="350">
+        <xAxis>
+            <CategoryAxis label="Estado"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="Cantidad"/>
+        </yAxis>
+    </BarChart>
+
+    <TableView fx:id="tablaEnvios" prefWidth="550" prefHeight="200">
+        <columns>
+            <TableColumn fx:id="colOrigen" text="Origen" prefWidth="120"/>
+            <TableColumn fx:id="colDestino" text="Destino" prefWidth="120"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
+            <TableColumn fx:id="colRepartidor" text="Repartidor" prefWidth="150"/>
+        </columns>
+    </TableView>
+</VBox>

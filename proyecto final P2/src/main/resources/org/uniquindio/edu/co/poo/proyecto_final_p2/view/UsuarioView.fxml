@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.UsuarioController">
+
+    <top>
+        <ToolBar style="-fx-background-color: #0288D1;">
+            <Label text="📦 Panel del Usuario"
+                   style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" />
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnCerrarSesion"
+                    text="Cerrar sesión"
+                    style="-fx-background-color: white; -fx-text-fill: #0288D1;"/>
+        </ToolBar>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="15" padding="25">
+            <Label text="Mis Envíos" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            <TableView fx:id="tablaEnvios" prefWidth="700" prefHeight="300">
+                <columns>
+                    <TableColumn fx:id="colIdEnvio" text="ID Envío" prefWidth="80"/>
+                    <TableColumn fx:id="colOrigen" text="Origen" prefWidth="150"/>
+                    <TableColumn fx:id="colDestino" text="Destino" prefWidth="150"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
+                    <TableColumn fx:id="colCosto" text="Costo" prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button fx:id="btnNuevoEnvio" text="Crear Envío" prefWidth="140" />
+                <Button fx:id="btnCancelarEnvio" text="Cancelar Envío" prefWidth="140" />
+                <Button fx:id="btnVerDetalles" text="Ver Detalles" prefWidth="140" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

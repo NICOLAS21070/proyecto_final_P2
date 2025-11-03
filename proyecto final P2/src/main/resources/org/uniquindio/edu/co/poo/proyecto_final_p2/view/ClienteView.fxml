@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.ClienteController">
+
+    <!-- Barra superior -->
+    <top>
+        <ToolBar style="-fx-background-color: #1976D2;">
+            <Label text="📦 Panel del Cliente"
+                   style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" />
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnCerrarSesion"
+                    text="Cerrar Sesión"
+                    onAction="#cerrarSesion"
+                    style="-fx-background-color: white; -fx-text-fill: #1976D2;"/>
+        </ToolBar>
+    </top>
+
+    <!-- Zona central -->
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
+
+            <Label text="Gestión de Envíos" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="btnCotizar" text="Cotizar y Crear Envío" onAction="#cotizarEnvio" prefWidth="160"/>
+                <Button fx:id="btnModificarEnvio" text="Modificar Envío" onAction="#modificarEnvio" prefWidth="160"/>
+                <Button fx:id="btnCancelarEnvio" text="Cancelar Envío" onAction="#cancelarEnvio" prefWidth="160"/>
+            </HBox>
+
+            <Separator/>
+
+            <Label text="Seguimiento y Pagos" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="btnRastrear" text="Rastrear Envío" onAction="#rastrearEnvio" prefWidth="160"/>
+                <Button fx:id="btnPagos" text="Pagos y Comprobantes" onAction="#consultarPagos" prefWidth="160"/>
+                <Button fx:id="btnHistorial" text="Historial de Envíos" onAction="#verHistorial" prefWidth="160"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

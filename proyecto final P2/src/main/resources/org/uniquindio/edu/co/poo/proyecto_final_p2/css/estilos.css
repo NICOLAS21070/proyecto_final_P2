@@ -1,0 +1,42 @@
+/* Cambiar color de fondo general */
+.root {
+    -fx-background-color: #f4f4f4;
+}
+
+/* Botones */
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.button{
+    -fx-background-color: #323;
+    -fx-text-alignment: white;
+    -fx-font-family: SimSun;
+    -fx-background-radius: 8;
+}
+
+/* Labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+}
+
+/* TextFields */
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+}
+
+/* TableView */
+.table-view {
+    -fx-border-color: #3498db;
+}
