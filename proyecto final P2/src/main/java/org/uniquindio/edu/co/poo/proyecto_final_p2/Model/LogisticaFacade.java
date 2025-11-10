@@ -134,7 +134,10 @@ public class LogisticaFacade {
         Usuario usuarioTemporal = new Usuario("Cliente Temporal", "correo@ejemplo.com", "Cliente");
         Direccion dirOrigen = new Direccion(origen);
         Direccion dirDestino = new Direccion(destino);
-        Paquete paquete = new Paquete("Paquete temporal", peso, fragil);
+
+        // ✅ Se usa el constructor correcto de Paquete (peso, alto, ancho, largo, fragil)
+        Paquete paquete = new Paquete(peso, 30, 25, 20, fragil);
+
         Tarifa tarifa = new Tarifa(costo, 0, 0, 0, 0);
 
         Envio envio = new Envio(null, dirOrigen, dirDestino, usuarioTemporal, paquete, tarifa, true);
@@ -143,6 +146,7 @@ public class LogisticaFacade {
         System.out.println("📦 Envío creado correctamente con ID: " + envio.getIdEnvio());
         return envio;
     }
+
 
     /**
      * Actualiza el estado de un envío existente.
@@ -208,4 +212,20 @@ public class LogisticaFacade {
         }
         return conteo;
     }
+    /**
+     * Busca y devuelve un envío por su ID único.
+     * Si no se encuentra, retorna null.
+     */
+    public Envio obtenerEnvioPorId(String idEnvio) {
+        if (idEnvio == null || idEnvio.isEmpty()) return null;
+
+        for (Envio envio : baseDatos.getListaEnvios()) {
+            if (envio != null && idEnvio.equalsIgnoreCase(envio.getIdEnvio())) {
+                return envio;
+            }
+        }
+        return null;
+    }
+
+
 }

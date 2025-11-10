@@ -15,7 +15,6 @@ import java.io.IOException;
 
 public class CotizarEnvioController {
 
-    // ✅ Ahora ComboBox en lugar de TextField
     @FXML private ComboBox<String> cbOrigen;
     @FXML private ComboBox<String> cbDestino;
 
@@ -35,10 +34,8 @@ public class CotizarEnvioController {
 
     @FXML
     public void initialize() {
-        // Configurar prioridad por defecto
         cbPrioridad.setValue("Normal");
 
-        // ✅ Asegurar que los ComboBox tengan valores (por si no vienen del FXML)
         if (cbOrigen.getItems().isEmpty()) {
             cbOrigen.getItems().addAll("Armenia", "Pereira", "Calarcá", "Circasia");
         }
@@ -64,7 +61,7 @@ public class CotizarEnvioController {
             String prioridad = cbPrioridad.getValue();
 
             if (origen == null || destino == null) {
-                mostrarAlerta("Datos incompletos", "Por favor selecciona origen y destino.");
+                mostrarAlerta(Alert.AlertType.WARNING, "Datos incompletos", "Por favor selecciona origen y destino.");
                 return;
             }
 
@@ -82,9 +79,11 @@ public class CotizarEnvioController {
             panelResultado.setVisible(true);
 
         } catch (NumberFormatException e) {
-            mostrarAlerta("Formato inválido", "Por favor ingresa valores numéricos válidos en peso y volumen.");
+            mostrarAlerta(Alert.AlertType.WARNING, "Formato inválido",
+                    "Por favor ingresa valores numéricos válidos en peso y volumen.");
         } catch (Exception e) {
-            mostrarAlerta("Error inesperado", e.getMessage());
+            mostrarAlerta(Alert.AlertType.ERROR, "Error inesperado", e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -98,7 +97,8 @@ public class CotizarEnvioController {
             String prioridad = cbPrioridad.getValue();
 
             if (origen == null || destino == null) {
-                mostrarAlerta("Datos incompletos", "Por favor selecciona origen y destino.");
+                mostrarAlerta(Alert.AlertType.WARNING, "Datos incompletos",
+                        "Por favor selecciona origen y destino.");
                 return;
             }
 
@@ -112,22 +112,20 @@ public class CotizarEnvioController {
                     chkPrioridadExtra.isSelected()
             );
 
-            // ✅ Mostrar mensaje de confirmación
-            mostrarAlerta("✅ Envío Creado", String.format(
-                    "El envío fue creado exitosamente.\n\n🆔 ID: %s\n💰 Costo: $%,.2f",
-                    nuevoEnvio.getIdEnvio(), nuevoEnvio.getCosto()
-            ));
+            // ✅ Corregido: ahora se usa getCostoTotal() (devuelve double)
+            mostrarAlerta(Alert.AlertType.INFORMATION, "✅ Envío Creado",
+                    String.format("El envío fue creado exitosamente.\n\n🆔 ID: %s\n💰 Costo: $%,.2f",
+                            nuevoEnvio.getIdEnvio(), nuevoEnvio.getCostoTotal()));
 
-            // ✅ Volver al panel del cliente (recargando su tabla)
+            // ✅ Volver al panel del cliente
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
                     "/org/uniquindio/edu/co/poo/proyecto_final_p2/view/ClienteView.fxml"));
             Parent root = loader.load();
 
-            // Si el cliente tiene controlador con método de refresco
             ClienteController clienteController = loader.getController();
             if (usuarioActual != null) {
                 clienteController.setUsuarioActual(usuarioActual);
-                clienteController.refrescarEnvios(); // 🔥 Método que recarga la lista de envíos
+                clienteController.refrescarEnvios();
             }
 
             Stage stage = (Stage) cbOrigen.getScene().getWindow();
@@ -136,13 +134,17 @@ public class CotizarEnvioController {
             stage.show();
 
         } catch (NumberFormatException e) {
-            mostrarAlerta("Formato inválido", "Por favor ingresa valores numéricos válidos en peso y volumen.");
+            mostrarAlerta(Alert.AlertType.WARNING, "Formato inválido",
+                    "Por favor ingresa valores numéricos válidos en peso y volumen.");
+        } catch (IOException e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Error al volver",
+                    "No se pudo cargar la vista del cliente: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
-            mostrarAlerta("Error inesperado", e.getMessage());
+            mostrarAlerta(Alert.AlertType.ERROR, "Error inesperado", e.getMessage());
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void volver() {
@@ -157,12 +159,14 @@ public class CotizarEnvioController {
             stage.show();
 
         } catch (IOException e) {
-            mostrarAlerta("Error al volver", "No se pudo cargar la vista del cliente: " + e.getMessage());
+            mostrarAlerta(Alert.AlertType.ERROR, "Error al volver",
+                    "No se pudo cargar la vista del cliente: " + e.getMessage());
         }
     }
 
-    private void mostrarAlerta(String titulo, String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
+    // ✅ Método flexible para mostrar alertas del tipo correcto
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
+        Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);

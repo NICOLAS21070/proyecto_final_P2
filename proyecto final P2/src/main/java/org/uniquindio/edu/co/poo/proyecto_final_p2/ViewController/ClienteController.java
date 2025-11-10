@@ -55,15 +55,17 @@ public class ClienteController {
 
     @FXML
     private void verHistorial() {
-        cargarVista("/org/uniquindio/edu/co/poo/proyecto_final_p2/view/HistorialEnviosView.fxml",
+        cargarVista("/org/uniquindio/edu/co/poo/proyecto_final_p2/view/VerHistorial.fxml",
                 "Historial de Envíos");
     }
 
+
     @FXML
     private void consultarPagos() {
-        cargarVista("/org/uniquindio/edu/co/poo/proyecto_final_p2/view/PagosView.fxml",
+        cargarVista("/org/uniquindio/edu/co/poo/proyecto_final_p2/view/ConsultarPagos.fxml",
                 "Pagos y Comprobantes");
     }
+
 
     @FXML
     private void rastrearEnvio() {

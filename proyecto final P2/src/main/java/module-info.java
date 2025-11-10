@@ -6,6 +6,6 @@ module org.uniquindio.edu.co.poo.proyecto_final_p2 {
     exports org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController;
 
     opens org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController to javafx.fxml;
-    exports org.uniquindio.edu.co.poo.proyecto_final_p2.controlador;
-    opens org.uniquindio.edu.co.poo.proyecto_final_p2.controlador to javafx.fxml;
+
+
 }

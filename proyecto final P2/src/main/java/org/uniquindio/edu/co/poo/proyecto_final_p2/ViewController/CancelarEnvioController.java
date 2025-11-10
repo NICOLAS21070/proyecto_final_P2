@@ -8,17 +8,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.Envio;
+import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.LogisticaFacade;
+import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.SistemaEnvios;
 
 public class CancelarEnvioController {
 
-    @FXML
-    private TextField txtIdEnvio;
+    @FXML private TextField txtIdEnvio;
+    @FXML private TextArea txtMotivo;
 
-    @FXML
-    private TextArea txtMotivo;
+    // 🔹 Acceso a la fachada logística
+    private final LogisticaFacade fachada = new LogisticaFacade();
 
     // ==========================================================
-    // 🔹 Cancelar envío
+    // ❌ Cancelar envío
     // ==========================================================
     @FXML
     private void cancelarEnvio() {
@@ -30,20 +33,31 @@ public class CancelarEnvioController {
             return;
         }
 
-        // Aquí puedes conectar con tu fachada o lógica de negocio
-        // Ejemplo: fachada.cancelarEnvio(id, motivo);
+        var listaEnvios = SistemaEnvios.getInstancia().getBaseDatos().getListaEnvios();
+        Envio envioEncontrado = null;
 
-        mostrarAlerta("Cancelación exitosa", "El envío con ID " + id + " fue cancelado correctamente.");
+        for (Envio envio : listaEnvios) {
+            if (envio.getIdEnvio().equals(id)) {
+                envioEncontrado = envio;
+                break;
+            }
+        }
+
+        if (envioEncontrado == null) {
+            mostrarAlerta("No encontrado", "No existe un envío con el ID: " + id);
+            return;
+        }
+
+        // 🔥 Eliminar completamente el envío del sistema
+        listaEnvios.remove(envioEncontrado);
+
+        mostrarAlerta("Envío eliminado", "El envío con ID " + id + " fue cancelado y eliminado correctamente.\nMotivo: " + motivo);
         limpiarCampos();
     }
 
-    private void limpiarCampos() {
-        txtIdEnvio.clear();
-        txtMotivo.clear();
-    }
 
     // ==========================================================
-    // 🔹 Volver al panel del cliente
+    // 🔙 Volver al panel del cliente
     // ==========================================================
     @FXML
     private void volver() {
@@ -60,6 +74,14 @@ public class CancelarEnvioController {
         } catch (Exception e) {
             mostrarAlerta("Error al volver", "No se pudo cargar la vista del cliente: " + e.getMessage());
         }
+    }
+
+    // ==========================================================
+    // ⚙️ Utilidades
+    // ==========================================================
+    private void limpiarCampos() {
+        txtIdEnvio.clear();
+        txtMotivo.clear();
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {

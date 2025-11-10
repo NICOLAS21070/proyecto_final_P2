@@ -1,19 +1,18 @@
 package org.uniquindio.edu.co.poo.proyecto_final_p2.Model;
 
-/**
- * Representa un paquete dentro del sistema logístico.
- * Contiene datos físicos y su condición de fragilidad.
- */
 public class Paquete {
 
     private String nombre;
-    private double peso;   // en kg
-    private double largo;  // en cm
-    private double ancho;  // en cm
-    private double alto;   // en cm
+    private double peso;
+    private double largo;
+    private double ancho;
+    private double alto;
     private boolean fragil;
 
-    // --- Constructor principal (dimensiones completas) ---
+    // 🟩 Nuevo campo
+    private String tipo;
+
+    // --- Constructor principal ---
     public Paquete(double peso, double largo, double ancho, double alto, boolean fragil) {
         this.nombre = "Paquete sin nombre";
         this.peso = peso;
@@ -21,9 +20,10 @@ public class Paquete {
         this.ancho = ancho;
         this.alto = alto;
         this.fragil = fragil;
+        this.tipo = "Paquete"; // valor por defecto
     }
 
-    // --- Constructor alternativo (usado por LogisticaFacade) ---
+    // --- Constructor alternativo ---
     public Paquete(String nombre, double peso, boolean fragil) {
         this.nombre = nombre;
         this.peso = peso;
@@ -31,6 +31,7 @@ public class Paquete {
         this.ancho = 0;
         this.alto = 0;
         this.fragil = fragil;
+        this.tipo = "Paquete";
     }
 
     // --- Getters y Setters ---
@@ -52,17 +53,17 @@ public class Paquete {
     public boolean isFragil() { return fragil; }
     public void setFragil(boolean fragil) { this.fragil = fragil; }
 
-    // --- Métodos útiles ---
-    /**
-     * Calcula el volumen del paquete en metros cúbicos.
-     */
+    // 🟩 Nuevo getter y setter
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
+
     public double calcularVolumen() {
-        return (largo * ancho * alto) / 1_000_000.0; // cm³ → m³
+        return (largo * ancho * alto) / 1_000_000.0;
     }
 
     @Override
     public String toString() {
-        return String.format("%s [%.2f kg, %.2f×%.2f×%.2f cm, %s]",
-                nombre, peso, largo, ancho, alto, fragil ? "Frágil" : "Normal");
+        return String.format("%s [%.2f kg, %.2f×%.2f×%.2f cm, %s, Tipo: %s]",
+                nombre, peso, largo, ancho, alto, fragil ? "Frágil" : "Normal", tipo);
     }
 }
