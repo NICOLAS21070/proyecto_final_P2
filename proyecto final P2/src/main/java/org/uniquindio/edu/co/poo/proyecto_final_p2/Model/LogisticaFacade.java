@@ -70,11 +70,42 @@ public class LogisticaFacade {
     }
 
     /**
+     * Elimina un usuario del sistema según su nombre.
+     */
+    public void eliminarUsuario(String nombreUsuario) {
+        baseDatos.eliminarUsuario(nombreUsuario);
+        System.out.println("🗑️ Usuario eliminado: " + nombreUsuario);
+    }
+
+    /**
+     * Actualiza la información de un usuario existente.
+     */
+    public void actualizarUsuario(String nombreViejo, String nuevoNombre, String nuevaContrasena, String nuevoRol) {
+        for (Usuario usuario : baseDatos.getListaUsuarios()) {
+            if (usuario.getNombreUsuario().equalsIgnoreCase(nombreViejo)) {
+                usuario.setNombreUsuario(nuevoNombre);
+                usuario.setContrasena(nuevaContrasena);
+                usuario.setTipo(nuevoRol);
+                System.out.println("✅ Usuario actualizado correctamente: " + nuevoNombre);
+                return;
+            }
+        }
+        System.out.println("⚠️ No se encontró el usuario con nombre: " + nombreViejo);
+    }
+
+    /**
+     * Retorna todos los usuarios en un ObservableList para JavaFX.
+     */
+    public ObservableList<Usuario> obtenerUsuarios() {
+        return FXCollections.observableArrayList(baseDatos.getListaUsuarios());
+    }
+
+    /**
      * Inicializa usuarios por defecto si no existen.
      */
     private void inicializarUsuariosPorDefecto() {
         if (baseDatos.getListaUsuarios().isEmpty()) {
-            baseDatos.agregarUsuario(new Usuario("admin", "1234", "Administrador"));
+            baseDatos.agregarUsuario(new Usuario("celis", "123", "Administrador"));
             baseDatos.agregarUsuario(new Usuario("cliente1", "pass", "Cliente"));
             baseDatos.agregarUsuario(new Usuario("repartidor1", "abc", "Repartidor"));
             System.out.println("✅ Usuarios por defecto cargados correctamente.");
@@ -137,7 +168,6 @@ public class LogisticaFacade {
 
         // ✅ Se usa el constructor correcto de Paquete (peso, alto, ancho, largo, fragil)
         Paquete paquete = new Paquete(peso, 30, 25, 20, fragil);
-
         Tarifa tarifa = new Tarifa(costo, 0, 0, 0, 0);
 
         Envio envio = new Envio(null, dirOrigen, dirDestino, usuarioTemporal, paquete, tarifa, true);
@@ -146,7 +176,6 @@ public class LogisticaFacade {
         System.out.println("📦 Envío creado correctamente con ID: " + envio.getIdEnvio());
         return envio;
     }
-
 
     /**
      * Actualiza el estado de un envío existente.
@@ -212,6 +241,7 @@ public class LogisticaFacade {
         }
         return conteo;
     }
+
     /**
      * Busca y devuelve un envío por su ID único.
      * Si no se encuentra, retorna null.
@@ -226,6 +256,5 @@ public class LogisticaFacade {
         }
         return null;
     }
-
 
 }

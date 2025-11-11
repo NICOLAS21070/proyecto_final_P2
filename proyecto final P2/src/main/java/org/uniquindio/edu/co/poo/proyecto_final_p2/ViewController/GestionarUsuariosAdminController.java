@@ -1,5 +1,6 @@
 package org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,37 +12,90 @@ import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.Usuario;
 
 public class GestionarUsuariosAdminController {
 
-    @FXML private TextField txtNombre, txtCorreo;
+    @FXML private TextField txtNombre, txtCorreo; // correo opcional
     @FXML private PasswordField txtContrasena;
     @FXML private ChoiceBox<String> cbRol;
     @FXML private TableView<Usuario> tablaUsuarios;
-    @FXML private TableColumn<Usuario, String> colNombre, colCorreo, colRol;
+    @FXML private TableColumn<Usuario, String> colNombre, colRol;
 
-    private LogisticaFacade fachada = new LogisticaFacade();
+    private final LogisticaFacade fachada = new LogisticaFacade();
 
+    // 🔹 Se ejecuta al cargar la vista
     @FXML
     public void initialize() {
-        System.out.println("✅ Vista de gestión de usuarios cargada.");
         cbRol.getItems().addAll("Cliente", "Repartidor", "Administrador");
         cbRol.getSelectionModel().selectFirst();
+
+        // Configurar columnas
+        colNombre.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombreUsuario()));
+        colRol.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getTipo()));
+
+        // Cargar usuarios existentes
+        actualizarTabla();
     }
 
+    // 🔹 Agregar un nuevo usuario
     @FXML
     private void agregarUsuario() {
-        System.out.println("🟢 Usuario agregado: " + txtNombre.getText());
-        // Lógica para agregar usuario con fachada
+        String nombre = txtNombre.getText().trim();
+        String contrasena = txtContrasena.getText().trim();
+        String rol = cbRol.getValue();
+
+        if (nombre.isEmpty() || contrasena.isEmpty()) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Campos vacíos", "Por favor completa todos los campos.");
+            return;
+        }
+
+        fachada.agregarUsuario(nombre, contrasena, rol);
+        mostrarAlerta(Alert.AlertType.INFORMATION, "Usuario agregado",
+                "Se agregó correctamente el usuario \"" + nombre + "\" como " + rol + ".");
+        limpiarCampos();
+        actualizarTabla();
     }
 
-    @FXML
-    private void actualizarUsuario() {
-        System.out.println("🟡 Usuario actualizado: " + txtNombre.getText());
-    }
-
+    // 🔹 Eliminar usuario seleccionado
     @FXML
     private void eliminarUsuario() {
-        System.out.println("🔴 Usuario eliminado: " + txtNombre.getText());
+        Usuario seleccionado = tablaUsuarios.getSelectionModel().getSelectedItem();
+        if (seleccionado == null) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Sin selección", "Selecciona un usuario para eliminar.");
+            return;
+        }
+
+        fachada.eliminarUsuario(seleccionado.getNombreUsuario());
+        mostrarAlerta(Alert.AlertType.INFORMATION, "Usuario eliminado",
+                "El usuario \"" + seleccionado.getNombreUsuario() + "\" ha sido eliminado.");
+        actualizarTabla();
     }
 
+    // 🔹 Actualizar usuario seleccionado (💥 método que faltaba)
+    @FXML
+    private void actualizarUsuario() {
+        Usuario seleccionado = tablaUsuarios.getSelectionModel().getSelectedItem();
+        if (seleccionado == null) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Sin selección", "Selecciona un usuario para actualizar.");
+            return;
+        }
+
+        String nuevoNombre = txtNombre.getText().trim();
+        String nuevaContrasena = txtContrasena.getText().trim();
+        String nuevoRol = cbRol.getValue();
+
+        if (nuevoNombre.isEmpty() || nuevaContrasena.isEmpty()) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Campos vacíos", "Por favor completa todos los campos.");
+            return;
+        }
+
+        // Llamamos a la fachada (debes tener un método allí para actualizar)
+        fachada.actualizarUsuario(seleccionado.getNombreUsuario(), nuevoNombre, nuevaContrasena, nuevoRol);
+
+        mostrarAlerta(Alert.AlertType.INFORMATION, "Usuario actualizado",
+                "El usuario \"" + nuevoNombre + "\" ha sido actualizado correctamente.");
+        limpiarCampos();
+        actualizarTabla();
+    }
+
+    // 🔹 Volver al panel del administrador
     @FXML
     private void volverAlPanelAdmin() {
         try {
@@ -55,5 +109,27 @@ public class GestionarUsuariosAdminController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // 🔹 Refresca los datos en la tabla
+    private void actualizarTabla() {
+        ObservableList<Usuario> usuarios = fachada.obtenerUsuarios();
+        tablaUsuarios.setItems(usuarios);
+    }
+
+    // 🔹 Limpia los campos del formulario
+    private void limpiarCampos() {
+        txtNombre.clear();
+        txtContrasena.clear();
+        cbRol.getSelectionModel().selectFirst();
+    }
+
+    // 🔹 Muestra alertas reutilizables
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 }

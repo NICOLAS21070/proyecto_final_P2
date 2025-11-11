@@ -20,10 +20,10 @@ public class EnvioAdapter {
     public String getFormatoExterno() {
         return String.format(
                 "{ \"codigo\": \"%s\", \"cliente\": \"%s\", \"destino\": \"%s\", \"estado\": \"%s\" }",
-                envio.getIdEnvio(), // ✅ reemplaza getCodigo()
-                envio.getUsuario().getNombreCompleto(), // ✅ reemplaza getNombre()
-                envio.getDestino(), // ✅ es un String, no un objeto con .getCiudad()
-                envio.getEstado() // ✅ este sí existe
+                envio.getIdEnvio(),
+                envio.getUsuario().getNombreUsuario(), // ✅ corregido
+                envio.getDestino(),
+                envio.getEstado()
         );
     }
 
@@ -31,9 +31,9 @@ public class EnvioAdapter {
      * Exporta a formato CSV simulado.
      */
     public String getFormatoCSV() {
-        return envio.getIdEnvio() + ";" + // ✅ reemplaza getCodigo()
-                envio.getUsuario().getNombreCompleto() + ";" + // ✅ reemplaza getNombre()
-                envio.getDestino() + ";" + // ✅ reemplaza getDestino().getCiudad()
-                envio.getEstado(); // ✅ correcto
+        return envio.getIdEnvio() + ";" +
+                envio.getUsuario().getNombreUsuario() + ";" + // ✅ corregido
+                envio.getDestino() + ";" +
+                envio.getEstado();
     }
 }
