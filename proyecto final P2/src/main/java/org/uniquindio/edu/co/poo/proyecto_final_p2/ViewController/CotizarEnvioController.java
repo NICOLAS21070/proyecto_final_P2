@@ -37,10 +37,18 @@ public class CotizarEnvioController {
         cbPrioridad.setValue("Normal");
 
         if (cbOrigen.getItems().isEmpty()) {
-            cbOrigen.getItems().addAll("Armenia", "Pereira", "Calarcá", "Circasia");
+            cbOrigen.getItems().setAll(
+                    "Armenia (Quindío)", "Buenavista (Quindío)", "Calarcá (Quindío)", "Cartago (Valle del Cauca)",
+                    "Caicedonia (Valle del Cauca)", "Circasia (Quindío)", "Córdoba (Quindío)", "Dosquebradas (Risaralda)",
+                    "Filandia (Quindío)", "Génova (Quindío)", "La Tebaida (Quindío)", "Montenegro (Quindío)",
+                    "Pereira (Risaralda)", "Pijao (Quindío)", "Quimbaya (Quindío)", "Salento (Quindío)"
+            );
         }
         if (cbDestino.getItems().isEmpty()) {
-            cbDestino.getItems().addAll("Armenia", "Pereira", "Calarcá", "Circasia");
+            cbDestino.getItems().addAll("Armenia (Quindío)", "Buenavista (Quindío)", "Calarcá (Quindío)", "Cartago (Valle del Cauca)",
+                    "Caicedonia (Valle del Cauca)", "Circasia (Quindío)", "Córdoba (Quindío)", "Dosquebradas (Risaralda)",
+                    "Filandia (Quindío)", "Génova (Quindío)", "La Tebaida (Quindío)", "Montenegro (Quindío)",
+                    "Pereira (Risaralda)", "Pijao (Quindío)", "Quimbaya (Quindío)", "Salento (Quindío)");
         }
 
         cbOrigen.getSelectionModel().selectFirst();

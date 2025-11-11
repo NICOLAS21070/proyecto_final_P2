@@ -24,7 +24,7 @@
             <padding>
                 <Insets top="25" right="25" bottom="25" left="25"/>
             </padding>
-            <Button fx:id="btnUsuarios" text="Gestionar Usuarios" prefWidth="220" />
+            <Button fx:id="btnUsuarios" text="Gestionar Usuarios" onAction="#gestionarUsuariosAdmin" prefWidth="220" />
             <Button fx:id="btnRepartidores" text="Gestionar Repartidores" prefWidth="220" />
             <Button fx:id="btnEnvios" text="Ver Envíos" prefWidth="220" />
             <Button fx:id="btnReportes" text="Reportes y Estadísticas" prefWidth="220" />

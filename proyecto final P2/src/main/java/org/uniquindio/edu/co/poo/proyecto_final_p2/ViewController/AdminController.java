@@ -43,6 +43,23 @@ public class AdminController {
     }
 
     @FXML
+    private void gestionarUsuariosAdmin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/org/uniquindio/edu/co/poo/proyecto_final_p2/view/GestionarUsuariosAdmin.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnUsuarios.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestión de Usuarios - Panel Administrador");
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void cerrarSesion() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/co/uniquindio/logistica/view/LoginView.fxml"));

@@ -32,10 +32,22 @@
             <ComboBox fx:id="cbOrigen" GridPane.rowIndex="0" GridPane.columnIndex="1">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Armenia"/>
-                        <String fx:value="Pereira"/>
-                        <String fx:value="Calarcá"/>
-                        <String fx:value="Circasia"/>
+                        <String fx:value="Armenia (Quindío)"/>
+                        <String fx:value="Buenavista (Quindío)"/>
+                        <String fx:value="Calarcá (Quindío)"/>
+                        <String fx:value="Cartago (Valle del Cauca)"/>
+                        <String fx:value="Caicedonia (Valle del Cauca)"/>
+                        <String fx:value="Circasia (Quindío)"/>
+                        <String fx:value="Córdoba (Quindío)"/>
+                        <String fx:value="Dosquebradas (Risaralda)"/>
+                        <String fx:value="Filandia (Quindío)"/>
+                        <String fx:value="Génova (Quindío)"/>
+                        <String fx:value="La Tebaida (Quindío)"/>
+                        <String fx:value="Montenegro (Quindío)"/>
+                        <String fx:value="Pereira (Risaralda)"/>
+                        <String fx:value="Píjao (Quindío)"/>
+                        <String fx:value="Quimbata (Quindío)"/>
+                        <String fx:value="Salento (Quindío)"/>
                     </FXCollections>
                 </items>
             </ComboBox>
@@ -45,10 +57,22 @@
             <ComboBox fx:id="cbDestino" GridPane.rowIndex="1" GridPane.columnIndex="1">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Armenia"/>
-                        <String fx:value="Pereira"/>
-                        <String fx:value="Calarcá"/>
-                        <String fx:value="Circasia"/>
+                        <String fx:value="Armenia (Quindío)"/>
+                        <String fx:value="Buenavista (Quindío)"/>
+                        <String fx:value="Calarcá (Quindío)"/>
+                        <String fx:value="Cartago (Valle del Cauca)"/>
+                        <String fx:value="Caicedonia (Valle del Cauca)"/>
+                        <String fx:value="Circasia (Quindío)"/>
+                        <String fx:value="Córdoba (Quindío)"/>
+                        <String fx:value="Dosquebradas (Risaralda)"/>
+                        <String fx:value="Filandia (Quindío)"/>
+                        <String fx:value="Génova (Quindío)"/>
+                        <String fx:value="La Tebaida (Quindío)"/>
+                        <String fx:value="Montenegro (Quindío)"/>
+                        <String fx:value="Pereira (Risaralda)"/>
+                        <String fx:value="Píjao (Quindío)"/>
+                        <String fx:value="Quimbata (Quindío)"/>
+                        <String fx:value="Salento (Quindío)"/>
                     </FXCollections>
                 </items>
             </ComboBox>
