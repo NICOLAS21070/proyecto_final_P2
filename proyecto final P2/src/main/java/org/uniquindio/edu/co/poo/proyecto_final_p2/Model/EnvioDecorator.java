@@ -8,6 +8,7 @@ public abstract class EnvioDecorator extends Envio {
     public EnvioDecorator(Envio envioDecorado) {
         super(
                 envioDecorado.getIdEnvio(),
+                envioDecorado.getRemitente(),   // NUEVO
                 new Direccion("Origen", envioDecorado.getOrigen(), "Desconocida", ""),
                 new Direccion("Destino", envioDecorado.getDestino(), "Desconocida", ""),
                 envioDecorado.getUsuario(),

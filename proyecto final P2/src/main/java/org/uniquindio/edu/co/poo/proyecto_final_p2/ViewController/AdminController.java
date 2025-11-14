@@ -36,6 +36,23 @@ public class AdminController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void gestionarRepartidoresAdmin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/org/uniquindio/edu/co/poo/proyecto_final_p2/view/GestionarRepartidoresAdmin.fxml"));
+
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnRepartidores.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestionar Repartidores - Panel Administrador");
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void cerrarSesion() {
@@ -57,10 +74,38 @@ public class AdminController {
         }
     }
 
-    // (Opcionales) Métodos placeholders si los usas en FXML
-    @FXML private void gestionarUsuarios() { System.out.println("👉 Acceso a gestión de usuarios."); }
-    @FXML private void gestionarRepartidores() { System.out.println("👉 Acceso a gestión de repartidores."); }
-    @FXML private void verEnvios() { System.out.println("👉 Visualización de envíos registrados."); }
-    @FXML private void verReportes() { System.out.println("👉 Generación de reportes y estadísticas."); }
+    @FXML
+    private void verEnvios() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/org/uniquindio/edu/co/poo/proyecto_final_p2/view/AsignarEnvios.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Asignar envios ");
+            stage.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void registrarIncidenciaAdmin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/org/uniquindio/edu/co/poo/proyecto_final_p2/view/RegistrarIncidencia.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnEnvios.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

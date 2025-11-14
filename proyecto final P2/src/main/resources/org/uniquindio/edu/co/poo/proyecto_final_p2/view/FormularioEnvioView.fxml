@@ -30,6 +30,8 @@
         <Label text="Volumen (m³):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
         <TextField fx:id="txtVolumen" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
+        <TextField fx:id="txtDireccion" promptText="Dirección del envío"/>
+
         <Label text="Prioridad:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
         <ComboBox fx:id="comboPrioridad" GridPane.rowIndex="4" GridPane.columnIndex="1">
             <items>

@@ -19,6 +19,8 @@ public class FormularioEnvioController {
     private Button btnGuardar, btnCancelar;
     @FXML
     private CheckBox chkSeguro, chkFragil, chkFirma, chkPrioridadExtra;
+    @FXML private TextField txtDireccion;
+    @FXML private TextField txtRemitente;
 
     private final LogisticaFacade fachada = new LogisticaFacade();
 
@@ -51,11 +53,14 @@ public class FormularioEnvioController {
                     chkSeguro.isSelected(),
                     chkFragil.isSelected(),
                     chkFirma.isSelected(),
-                    chkPrioridadExtra.isSelected()
+                    chkPrioridadExtra.isSelected(),
+                    txtDireccion.getText().trim(),
+                    txtRemitente.getText().trim()
+
             );
 
             mostrarAlerta("✅ Envío Creado", String.format(
-                    "El envío fue creado exitosamente.\n\n🆔 ID: %s\n💰 Costo: $%,.2f",
+                    "El envío fue creado exitosamente.\n\n🆔 ID: %s\n Costo: $%,.2f",
                     envio.getIdEnvio(),
                     envio.getCosto().getBase()
             ));

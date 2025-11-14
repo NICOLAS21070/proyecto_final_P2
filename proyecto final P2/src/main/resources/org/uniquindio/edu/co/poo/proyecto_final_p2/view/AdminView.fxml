@@ -33,7 +33,7 @@
 
             <Button fx:id="btnRepartidores"
                     text="Gestionar Repartidores"
-                    onAction="#gestionarRepartidores"
+                    onAction="#gestionarRepartidoresAdmin"
                     prefWidth="220"/>
 
             <Button fx:id="btnEnvios"
@@ -41,9 +41,9 @@
                     onAction="#verEnvios"
                     prefWidth="220"/>
 
-            <Button fx:id="btnReportes"
-                    text="Reportes y Estadísticas"
-                    onAction="#verReportes"
+            <Button fx:id="btnIncidencia"
+                    text="Registrar incidencias"
+                    onAction="#registrarIncidenciaAdmin"
                     prefWidth="220"/>
         </VBox>
     </center>

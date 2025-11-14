@@ -29,6 +29,8 @@ public class CotizarEnvioController {
 
     @FXML private Label lblCosto;
     @FXML private VBox panelResultado;
+    @FXML private TextField txtDireccion;
+    @FXML private TextField txtRemitente;
 
     private Usuario usuarioActual;
 
@@ -103,10 +105,20 @@ public class CotizarEnvioController {
             double peso = Double.parseDouble(txtPeso.getText().trim());
             double volumen = Double.parseDouble(txtVolumen.getText().trim());
             String prioridad = cbPrioridad.getValue();
+            String direccion = txtDireccion.getText().trim();
+            String remitente = txtRemitente.getText().trim();
+
+
 
             if (origen == null || destino == null) {
                 mostrarAlerta(Alert.AlertType.WARNING, "Datos incompletos",
                         "Por favor selecciona origen y destino.");
+                return;
+            }
+
+            if(direccion.isEmpty()) {
+                mostrarAlerta(Alert.AlertType.WARNING, "Falta dirección",
+                        "Por favor ingresa la dirección del destino.");
                 return;
             }
 
@@ -117,7 +129,9 @@ public class CotizarEnvioController {
                     chkSeguro.isSelected(),
                     chkFragil.isSelected(),
                     chkFirma.isSelected(),
-                    chkPrioridadExtra.isSelected()
+                    chkPrioridadExtra.isSelected(),
+                    direccion,
+                    remitente
             );
 
             // ✅ Corregido: ahora se usa getCostoTotal() (devuelve double)

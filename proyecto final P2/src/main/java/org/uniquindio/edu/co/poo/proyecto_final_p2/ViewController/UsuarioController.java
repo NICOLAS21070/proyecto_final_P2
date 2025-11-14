@@ -48,10 +48,12 @@ public class UsuarioController {
 
     @FXML
     private void crearEnvio() {
-        fachada.crearEnvio("Calle 10 #5-22", "Carrera 20 #12-45", 4.2, 15_000, "Normal",false, // seguro
+        fachada.crearEnvio("Calle 10 #5-22", "Carrera 20 #12-45", 4.2, 0.15, "Normal",false, // seguro
                 false, // fragil
                 false, // firma
-                false  // prioridadExtra
+                false,  // prioridadExtra
+                "Carrera 20 #12-45",
+                "Samuel"
         );
         mostrarAlerta("✅ Envío creado correctamente.");
         cargarMisEnvios();

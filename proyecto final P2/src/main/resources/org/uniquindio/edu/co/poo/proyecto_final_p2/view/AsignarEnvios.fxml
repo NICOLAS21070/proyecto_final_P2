@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="645.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.AsignarEnviosController">
+
+    <top>
+        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="ASIGNAR ENVÍOS A REPARTIDORES" BorderPane.alignment="CENTER" />
+    </top>
+
+    <center>
+        <HBox prefHeight="471.0" prefWidth="1197.0" spacing="20">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+           <children>
+   
+               <!-- Tabla de Envíos -->
+               <VBox spacing="10" HBox.hgrow="ALWAYS">
+      <children>
+                      <Label text="Envíos pendientes" />
+                      <TableView fx:id="tablaEnvios" prefWidth="450">
+      
+                          <columns>
+                              <TableColumn fx:id="colIdEnvio" prefWidth="80" text="ID" />
+                              <TableColumn fx:id="colRemitente" prefWidth="150" text="Remitente" />
+                              <TableColumn fx:id="colDestino" prefWidth="227.0" text="Destino" />
+                              <TableColumn fx:id="colEstadoEnvio" prefWidth="152.0" text="Estado" />
+                          </columns>
+      
+                      </TableView>
+      </children>
+               </VBox>
+   
+               <!-- Tabla de Repartidores -->
+               <VBox spacing="10" HBox.hgrow="ALWAYS">
+      <children>
+                      <Label text="Repartidores disponibles" />
+                      <TableView fx:id="tablaRepartidores" prefWidth="450">
+      
+                          <columns>
+                              <TableColumn fx:id="colNombreRep" prefWidth="150" text="Nombre" />
+                              <TableColumn fx:id="colTelefono" prefWidth="120" text="Teléfono" />
+                              <TableColumn fx:id="colZona" prefWidth="194.0" text="Zona" />
+                              <TableColumn fx:id="colEstadoRep" prefWidth="145.0" text="Estado" />
+                          </columns>
+      
+                      </TableView>
+      </children>
+               </VBox>
+           </children>
+
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="15">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+           <children>
+   
+               <Button fx:id="btnAsignar" onAction="#asignarEnvio" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Asignar envío" />
+   
+               <Button fx:id="btnVolver" onAction="#volver" style="-fx-background-color: #3A3A3A; -fx-text-fill: white;" text="Volver" />
+           </children>
+        </HBox>
+    </bottom>
+
+</BorderPane>

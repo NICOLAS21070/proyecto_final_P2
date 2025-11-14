@@ -1,5 +1,8 @@
 package org.uniquindio.edu.co.poo.proyecto_final_p2.Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +13,17 @@ public class BaseDatosLogistica {
     private final List<Usuario> listaUsuarios;
     private final List<Envio> listaEnvios;
     private final List<Incidencia> listaIncidencias;
+    private final ObservableList<Repartidor> listaRepartidores = FXCollections.observableArrayList();
 
     private BaseDatosLogistica() {
         this.listaUsuarios = new ArrayList<>();
         this.listaEnvios = new ArrayList<>();
         this.listaIncidencias = new ArrayList<>();
+
+
+        listaUsuarios.add(new Usuario("admin", "123", "Administrador"));
+        listaUsuarios.add(new Usuario("cliente", "123", "Cliente"));
+        listaUsuarios.add(new Usuario("repartidor", "123", "Repartidor"));
     }
 
     public static BaseDatosLogistica getInstancia() {
@@ -59,5 +68,12 @@ public class BaseDatosLogistica {
 
     public List<Incidencia> getListaIncidencias() {
         return listaIncidencias;
+    }
+
+    // ================================
+    // 🔹 Métodos para Repartidores
+    // ================================
+    public ObservableList<Repartidor> getListaRepartidores() {
+        return listaRepartidores;
     }
 }

@@ -2,10 +2,6 @@ package org.uniquindio.edu.co.poo.proyecto_final_p2.Model;
 
 import java.util.UUID;
 
-/**
- * Patrón Builder aplicado a la clase Envio.
- * Permite construir un envío paso a paso antes de crearlo definitivamente.
- */
 public class EnvioBuilder {
 
     private Usuario usuario;
@@ -14,6 +10,7 @@ public class EnvioBuilder {
     private Paquete paquete;
     private Tarifa tarifa;
     private boolean prioridad;
+    private String remitente;
 
     public EnvioBuilder setUsuario(Usuario usuario) {
         this.usuario = usuario;
@@ -45,18 +42,28 @@ public class EnvioBuilder {
         return this;
     }
 
-    /**
-     * Construye finalmente el objeto Envio.
-     */
+    public EnvioBuilder setRemitente(String remitente) {
+        this.remitente = remitente;
+        return this;
+    }
+
     public Envio build() {
-        if (usuario == null || origen == null || destino == null || paquete == null || tarifa == null) {
+
+        if (usuario == null || origen == null || destino == null || paquete == null || tarifa == null || remitente == null) {
             throw new IllegalStateException("Faltan datos para crear el envío");
         }
 
-        // Generar un ID único para el envío
         String idEnvio = UUID.randomUUID().toString();
 
-        // Crear el envío con todos los parámetros
-        return new Envio(idEnvio, origen, destino, usuario, paquete, tarifa, prioridad);
+        return new Envio(
+                idEnvio,
+                remitente,
+                origen,
+                destino,
+                usuario,
+                paquete,
+                tarifa,
+                prioridad
+        );
     }
 }

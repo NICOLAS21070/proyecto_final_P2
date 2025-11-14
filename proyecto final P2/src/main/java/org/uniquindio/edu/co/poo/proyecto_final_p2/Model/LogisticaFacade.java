@@ -157,24 +157,43 @@ public class LogisticaFacade {
      * Crea un nuevo envío con todos los datos requeridos.
      */
     public Envio crearEnvio(String origen, String destino, double peso, double volumen, String prioridad,
-                            boolean seguro, boolean fragil, boolean firma, boolean prioridadExtra) {
+                            boolean seguro, boolean fragil, boolean firma, boolean prioridadExtra,
+                            String descripcion, String remitente) {
 
         double costo = calcularCosto(peso, volumen, prioridad, seguro, fragil, firma, prioridadExtra);
 
-        // Datos básicos del envío
-        Usuario usuarioTemporal = new Usuario("Cliente Temporal", "correo@ejemplo.com", "Cliente");
+        // Usuario temporal según remitente
+        Usuario usuarioTemporal = new Usuario(remitente, "N/A", "Cliente");
+
+        // Crear direcciones reales
         Direccion dirOrigen = new Direccion(origen);
         Direccion dirDestino = new Direccion(destino);
 
-        // ✅ Se usa el constructor correcto de Paquete (peso, alto, ancho, largo, fragil)
+        // Crear paquete real
         Paquete paquete = new Paquete(peso, 30, 25, 20, fragil);
+
+        // Crear tarifa real
         Tarifa tarifa = new Tarifa(costo, 0, 0, 0, 0);
 
-        Envio envio = new Envio(null, dirOrigen, dirDestino, usuarioTemporal, paquete, tarifa, true);
+        // CREAR ENVÍO con el nuevo constructor corregido
+        Envio envio = new Envio(
+                null,          // ID generado automático
+                remitente,     // 🔹 NUEVO: remitente del envío
+                dirOrigen,
+                dirDestino,
+                usuarioTemporal,
+                paquete,
+                tarifa,
+                false
+        );
+
+        envio.setDescripcion(descripcion);
+
         baseDatos.agregarEnvio(envio);
 
         System.out.println("📦 Envío creado correctamente con ID: " + envio.getIdEnvio());
         return envio;
+
     }
 
     /**
@@ -255,6 +274,60 @@ public class LogisticaFacade {
             }
         }
         return null;
+    }
+
+    // ==========================================================
+// 🔹 REPARTIDORES
+// ==========================================================
+// LISTAR
+    public ObservableList<Repartidor> obtenerRepartidores() {
+        return baseDatos.getListaRepartidores();
+    }
+
+    // AGREGAR
+    public void agregarRepartidor(String usuario, String contrasena,
+                                  String nombreReal, String documento,
+                                  String telefono, String zonaCobertura,
+                                  String estado) {
+
+        Repartidor nuevo = new Repartidor(usuario, contrasena, nombreReal, documento, telefono, zonaCobertura, estado);
+        baseDatos.getListaRepartidores().add(nuevo);
+    }
+
+    // ELIMINAR (por documento)
+    public void eliminarRepartidor(String documento) {
+        baseDatos.getListaRepartidores()
+                .removeIf(r -> r.getDocumento().equalsIgnoreCase(documento));
+    }
+
+    // ACTUALIZAR (buscando por documento original)
+    public void actualizarRepartidor(String documentoOriginal,
+                                     String nuevoUsuario,
+                                     String nuevaContrasena,
+                                     String nuevoNombreReal,
+                                     String nuevoDocumento,
+                                     String nuevoTelefono,
+                                     String nuevaZona,
+                                     String nuevoEstado) {
+
+        for (Repartidor r : baseDatos.getListaRepartidores()) {
+            if (r.getDocumento().equalsIgnoreCase(documentoOriginal)) {
+
+                // Datos heredados de Usuario
+                r.setNombreUsuario(nuevoUsuario);
+
+                r.setContrasena(nuevaContrasena);
+
+                // Campos propios
+                r.setDocumento(nuevoDocumento);
+                r.setNombreReal(nuevoNombreReal);
+                r.setTelefono(nuevoTelefono);
+                r.setZonaCobertura(nuevaZona);
+                r.setEstadoDisponibilidad(nuevoEstado);
+
+                return;
+            }
+        }
     }
 
 }
