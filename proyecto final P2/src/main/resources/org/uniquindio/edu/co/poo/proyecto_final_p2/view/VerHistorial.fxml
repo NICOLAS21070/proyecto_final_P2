@@ -26,11 +26,20 @@
                 </columns>
             </TableView>
 
+            <!-- BOTONES ABAJO -->
             <HBox spacing="15" alignment="CENTER">
+
                 <Button text="Actualizar" onAction="#actualizarHistorial"/>
+
+                <!-- 🔥 NUEVO BOTÓN DESCARGAR CSV -->
+                <Button text="Descargar CSV"
+                        onAction="#descargarCSV"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
                 <Button text="Volver" onAction="#volverMenu"/>
             </HBox>
 
         </VBox>
     </children>
+
 </AnchorPane>

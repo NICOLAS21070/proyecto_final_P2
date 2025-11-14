@@ -20,6 +20,13 @@ public class LogisticaFacade {
         this.baseDatos = BaseDatosLogistica.getInstancia();
         inicializarUsuariosPorDefecto(); // ✅ Carga inicial de usuarios por defecto
     }
+    // ==========================================================
+// 🔹 LISTAR INCIDENCIAS
+// ==========================================================
+    public List<Incidencia> obtenerIncidencias() {
+        return baseDatos.getListaIncidencias();
+    }
+
 
     // ==========================================================
     // 🔹 USUARIOS

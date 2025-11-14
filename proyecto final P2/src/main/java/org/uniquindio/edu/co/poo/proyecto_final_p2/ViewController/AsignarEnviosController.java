@@ -40,7 +40,6 @@ public class AsignarEnviosController {
     }
 
     private void configurarTablas() {
-
         colIdEnvio.setCellValueFactory(new PropertyValueFactory<>("idEnvio"));
         colRemitente.setCellValueFactory(new PropertyValueFactory<>("remitente"));
         colDestino.setCellValueFactory(new PropertyValueFactory<>("destino"));
@@ -70,27 +69,61 @@ public class AsignarEnviosController {
         tablaRepartidores.getItems().setAll(disponibles);
     }
 
+    // 🔥 MÉTODO COMPLETO YA CORREGIDO
     @FXML
     private void asignarEnvio() {
-        Envio envio = tablaEnvios.getSelectionModel().getSelectedItem();
-        Repartidor repartidor = tablaRepartidores.getSelectionModel().getSelectedItem();
 
-        if (envio == null || repartidor == null) {
-            mostrarError("Debes seleccionar un envío y un repartidor.");
+        Envio envio = tablaEnvios.getSelectionModel().getSelectedItem();
+
+        if (envio == null) {
+            mostrarError("Debes seleccionar un envío.");
             return;
         }
 
-        // Actualizar datos del envío
-        envio.setRepartidor(repartidor.getNombreReal());
-        envio.setEstado("En ruta");
+        List<Repartidor> disponibles = fachada.obtenerRepartidores()
+                .stream()
+                .filter(rep -> rep.getEstadoDisponibilidad().equalsIgnoreCase("Activo"))
+                .collect(Collectors.toList());
 
-        // Actualizar estado del repartidor
-        repartidor.setEstadoDisponibilidad("En ruta");
+        if (disponibles.isEmpty()) {
+            mostrarError("No hay repartidores disponibles.");
+            return;
+        }
 
-        mostrarInfo("El envío fue asignado correctamente.");
+        List<String> nombres = disponibles.stream()
+                .map(Repartidor::getNombreReal)
+                .collect(Collectors.toList());
 
-        cargarEnviosPendientes();
-        cargarRepartidoresDisponibles();
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(nombres.get(0), nombres);
+        dialog.setTitle("Asignar envío");
+        dialog.setHeaderText("Seleccione un repartidor para asignar el envío");
+        dialog.setContentText("Repartidor:");
+
+        dialog.showAndWait().ifPresent(nombreSeleccionado -> {
+
+            Repartidor repartidorSeleccionado = disponibles.stream()
+                    .filter(r -> r.getNombreReal().equals(nombreSeleccionado))
+                    .findFirst()
+                    .orElse(null);
+
+            if (repartidorSeleccionado == null) {
+                mostrarError("Error interno: no se encontró el repartidor.");
+                return;
+            }
+
+            // ⭐⭐⭐ CORRECCIÓN IMPORTANTE ⭐⭐⭐
+            // Guardar el DOCUMENTO, no el nombre
+            envio.setRepartidor(repartidorSeleccionado.getDocumento());
+            envio.setEstado("En ruta");
+
+            // Repartidor ahora queda ocupado
+            repartidorSeleccionado.setEstadoDisponibilidad("En ruta");
+
+            mostrarInfo("El envío fue asignado a: " + nombreSeleccionado);
+
+            cargarEnviosPendientes();
+            cargarRepartidoresDisponibles();
+        });
     }
 
     private void mostrarError(String msg) {
@@ -102,6 +135,7 @@ public class AsignarEnviosController {
         Alert a = new Alert(Alert.AlertType.INFORMATION, msg);
         a.show();
     }
+
     @FXML
     private void volver() {
         try {

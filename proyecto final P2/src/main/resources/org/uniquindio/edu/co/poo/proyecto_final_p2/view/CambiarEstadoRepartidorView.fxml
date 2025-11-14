@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.CambiarEstadoRepartidorController">
+
+    <center>
+        <VBox spacing="18">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Cambiar estado del Repartidor" style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <!-- búsqueda -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Documento (ID):"/>
+                <TextField fx:id="txtBuscarDocumento" promptText="Ingrese documento"/>
+                <Button text="Buscar" onAction="#buscarRepartidor"/>
+            </HBox>
+
+            <Separator/>
+
+            <!-- datos encontrados -->
+            <GridPane hgap="10" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                    <ColumnConstraints minWidth="300"/>
+                </columnConstraints>
+
+                <Label text="Usuario:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtUsuario" editable="false" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Nombre real:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtNombreReal" editable="false" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Documento:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtDocumento" editable="false" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Teléfono:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtTelefono" editable="false" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Zona:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtZona" editable="false" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="Estado actual:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtEstadoActual" editable="false" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- elección nuevo estado -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Nuevo estado:"/>
+                <ChoiceBox fx:id="choiceNuevoEstado">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Activo"/>
+                            <String fx:value="Inactivo"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+
+                <Button text="Guardar Estado" onAction="#guardarNuevoEstado"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="12" alignment="CENTER_RIGHT" style="-fx-padding: 12;">
+            <Button text="Volver" onAction="#volverMenu"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.ConsultarEnviosController"
+            prefWidth="900" prefHeight="600">
+
+    <VBox spacing="20" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <!-- TÍTULO -->
+        <Label text="Consultar Envíos por Repartidor"
+               style="-fx-font-size: 26px; -fx-font-weight: bold;"/>
+
+        <!-- TABLA REPARTIDORES -->
+        <VBox spacing="10">
+            <Label text="Repartidores"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <TableView fx:id="tablaRepartidores" prefHeight="200">
+                <columns>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="250"/>
+                    <TableColumn fx:id="colDocumento" text="Documento" prefWidth="200"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- TABLA ENVIOS -->
+        <VBox spacing="10">
+            <Label text="Envíos Asignados"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <TableView fx:id="tablaEnvios" prefHeight="260">
+                <columns>
+                    <TableColumn fx:id="colIdEnvio" text="ID Envío" prefWidth="120"/>
+                    <TableColumn fx:id="colDestino" text="Destino" prefWidth="200"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="150"/>
+                    <TableColumn fx:id="colDescripcion" text="Descripción" prefWidth="200"/>
+                    <TableColumn fx:id="colCosto" text="Costo" prefWidth="120"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- BOTÓN VOLVER -->
+        <Button fx:id="btnVolver"
+                text="Volver"
+                onAction="#volverMenu"
+                style="-fx-font-size: 16px;
+                       -fx-padding: 10 20;
+                       -fx-background-color: #d3d3d3;
+                       -fx-background-radius: 8;"/>
+
+    </VBox>
+
+</AnchorPane>

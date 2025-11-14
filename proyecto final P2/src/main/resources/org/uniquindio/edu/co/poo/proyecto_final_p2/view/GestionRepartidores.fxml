@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.GestionRepartidoresController">
+
+    <!-- ============================
+            CONTENIDO PRINCIPAL
+         ============================ -->
+    <center>
+        <HBox spacing="40" style="-fx-padding: 20;">
+
+            <!-- ====== FORMULARIO ====== -->
+            <VBox spacing="15" prefWidth="250">
+
+                <Label text="Agregar Repartidor"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+                <Label text="Nombre Real:" />
+                <TextField fx:id="txtNombreReal" />
+
+                <Label text="Documento:" />
+                <TextField fx:id="txtDocumento" />
+
+                <Label text="Teléfono:" />
+                <TextField fx:id="txtTelefono" />
+
+                <Label text="Zona:" />
+                <TextField fx:id="txtZona" />
+
+                <Label text="Estado:" />
+                <TextField fx:id="txtEstado" />
+
+                <Button text="Agregar"
+                        onAction="#agregarRepartidorFormulario"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;" />
+
+            </VBox>
+
+            <!-- ====== TABLA ====== -->
+            <TableView fx:id="tablaRepartidores" prefWidth="500">
+                <columns>
+                    <TableColumn fx:id="colNombreReal" text="Nombre" />
+                    <TableColumn fx:id="colDocumento"  text="Cédula" />
+                    <TableColumn fx:id="colTelefono"   text="Teléfono" />
+                    <TableColumn fx:id="colZona"       text="Zona" />
+                    <TableColumn fx:id="colEstado"     text="Estado" />
+                </columns>
+            </TableView>
+
+        </HBox>
+    </center>
+
+    <!-- ============================
+            BOTONES INFERIORES
+         ============================ -->
+    <bottom>
+        <HBox spacing="20" alignment="CENTER" style="-fx-padding: 15;">
+            <Button text="Actualizar" onAction="#actualizarRepartidor" />
+            <Button text="Eliminar"   onAction="#eliminarRepartidor" />
+            <Button text="Consultar"  onAction="#consultarRepartidor" />
+            <Button text="Volver"     onAction="#volverMenu" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

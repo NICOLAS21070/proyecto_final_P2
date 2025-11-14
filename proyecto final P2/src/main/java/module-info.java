@@ -1,6 +1,7 @@
 module org.uniquindio.edu.co.poo.proyecto_final_p2 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
     exports org.uniquindio.edu.co.poo.proyecto_final_p2;
     exports org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController;
