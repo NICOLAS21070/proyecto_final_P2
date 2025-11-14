@@ -1,42 +1,258 @@
-/* Cambiar color de fondo general */
-.root {
-    -fx-background-color: #f4f4f4;
+/* ============================
+   ESTILO GENERAL
+   ============================ */
+
+#rootPane {
+    -fx-background-color: linear-gradient(to bottom, #e3f2fd, #bbdefb);
 }
 
-/* Botones */
-.button {
-    -fx-background-color: #3498db;
+/* Contenedor principal */
+#mainContainer {
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-padding: 30px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 3);
+}
+
+/* ============================
+   TEXTOS Y LABELS
+   ============================ */
+
+.titulo-principal {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0d47a1;
+}
+
+.label-form {
+    -fx-font-size: 14px;
+    -fx-text-fill: #0d47a1;
+}
+
+
+/* ============================
+   CAMPOS DE TEXTO
+   ============================ */
+
+.campo {
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 8px;
+    -fx-border-color: #90caf9;
+    -fx-border-width: 1.2;
+}
+
+.campo:focused {
+    -fx-border-color: #1976d2;
+    -fx-border-width: 1.4;
+    -fx-effect: dropshadow(gaussian, rgba(25,118,210,0.3), 10, 0.5, 0, 0);
+}
+
+
+/* ============================
+   BOTÓN LOGIN
+   ============================ */
+
+.boton-login {
+    -fx-background-color: #1976d2;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-radius: 8;
-}
-
-.button:hover {
-    -fx-background-color: #2980b9;
-}
-
-.button{
-    -fx-background-color: #323;
-    -fx-text-alignment: white;
-    -fx-font-family: SimSun;
-    -fx-background-radius: 8;
-}
-
-/* Labels */
-.label {
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
     -fx-font-size: 14px;
-    -fx-text-fill: #2c3e50;
+    -fx-cursor: hand;
 }
 
-/* TextFields */
-.text-field {
+.boton-login:hover {
+    -fx-background-color: #0d47a1;
+}
+
+.boton-login:pressed {
+    -fx-background-color: #08306b;
+}
+
+
+/* ============================
+   MENSAJE DE ERROR
+   ============================ */
+.mensaje-error {
+    -fx-text-fill: red;
+    -fx-font-size: 13px;
+    -fx-font-style: italic;
+}
+/* ============================
+   ROOT DEL PANEL ADMIN
+   ============================ */
+
+#rootAdminPane {
+    -fx-background-color: linear-gradient(to bottom, #e3f2fd, #bbdefb);
+}
+
+/* ============================
+   TOOLBAR SUPERIOR
+   ============================ */
+
+.top-toolbar {
+    -fx-background-color: #1976d2;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
+.title-label {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* BOTÓN CERRAR SESIÓN */
+.btn-cerrar-sesion {
+    -fx-background-color: #e53935;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 6 15;
+    -fx-cursor: hand;
+}
+
+.btn-cerrar-sesion:hover {
+    -fx-background-color: #b71c1c;
+}
+
+.btn-cerrar-sesion:pressed {
+    -fx-background-color: #7f0000;
+}
+
+/* ============================
+      PANEL CENTRAL
+   ============================ */
+
+.main-container {
     -fx-background-color: white;
-    -fx-border-color: #bdc3c7;
-    -fx-border-radius: 5;
-    -fx-padding: 5;
+    -fx-padding: 20;
+    -fx-background-radius: 15px;
+    -fx-spacing: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.20), 15, 0.3, 0, 3);
 }
 
-/* TableView */
-.table-view {
-    -fx-border-color: #3498db;
+/* ============================
+         BOTONES DEL MENÚ
+   ============================ */
+
+.menu-button {
+    -fx-background-color: #2196f3;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 12;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: #0d47a1;
+}
+
+.menu-button:pressed {
+    -fx-background-color: #08306b;
+}
+/* =============================
+   PANEL PRINCIPAL
+   ============================= */
+#rootAsignarEnvios {
+    -fx-background-color: linear-gradient(to bottom, #e3f2fd, #bbdefb);
+}
+
+/* =============================
+   TÍTULO PRINCIPAL
+   ============================= */
+.titulo-asignar {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0d47a1;
+    -fx-padding: 20 0 20 0;
+}
+
+/* =============================
+   SUBTÍTULOS
+   ============================= */
+.subtitulo {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0d47a1;
+}
+
+/* =============================
+   TABLAS
+   ============================= */
+
+.tabla-envios, .tabla-repartidores {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: #90caf9;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1.2;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #1976d2;
+}
+
+.table-view .column-header-background .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #bbdefb;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: #0d47a1;
+}
+
+/* =============================
+   CONTENEDOR DE BOTONES
+   ============================= */
+.contenedor-botones {
+    -fx-background-color: transparent;
+}
+
+/* =============================
+   BOTONES
+   ============================= */
+
+.btn-asignar {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.btn-asignar:hover {
+    -fx-background-color: #388E3C;
+}
+
+.btn-asignar:pressed {
+    -fx-background-color: #1B5E20;
+}
+
+.btn-volver {
+    -fx-background-color: #424242;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.btn-volver:hover {
+    -fx-background-color: #212121;
+}
+
+.btn-volver:pressed {
+    -fx-background-color: black;
 }

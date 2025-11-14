@@ -8,41 +8,42 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.LoginController"
             prefWidth="500" prefHeight="400"
-            style="-fx-background-color: linear-gradient(to bottom, #e3f2fd, #bbdefb);">
+            id="rootPane">
 
     <children>
-        <VBox alignment="CENTER" spacing="15.0" layoutX="70" layoutY="50" prefWidth="360">
+        <VBox id="mainContainer" alignment="CENTER" spacing="15.0" layoutX="70" layoutY="50" prefWidth="360">
             <padding>
                 <Insets top="40" right="30" bottom="40" left="30"/>
             </padding>
 
             <!-- Título -->
-            <Label text="Sistema Logístico - Login"
-                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #0d47a1;"/>
+            <Label id="lblTitulo"
+                   text="Sistema Logístico - Login"
+                   styleClass="titulo-principal"/>
 
-            <Separator prefWidth="200"/>
+            <Separator id="lineSeparator" prefWidth="200"/>
 
             <!-- Tipo de usuario -->
-            <Label text="Tipo de usuario:" style="-fx-font-size: 14px;"/>
-            <ChoiceBox fx:id="cbTipoUsuario" prefWidth="200"/>
+            <Label id="lblTipoUsuario" text="Tipo de usuario:" styleClass="label-form"/>
+            <ChoiceBox fx:id="cbTipoUsuario" prefWidth="200" styleClass="campo"/>
 
             <!-- Usuario -->
-            <Label text="Usuario:" style="-fx-font-size: 14px;"/>
-            <TextField fx:id="txtUsuario" promptText="Ingrese su usuario" prefWidth="250"/>
+            <Label id="lblUsuario" text="Usuario:" styleClass="label-form"/>
+            <TextField fx:id="txtUsuario" promptText="Ingrese su usuario" prefWidth="250" styleClass="campo"/>
 
             <!-- Contraseña -->
-            <Label text="Contraseña:" style="-fx-font-size: 14px;"/>
-            <PasswordField fx:id="txtPassword" promptText="Ingrese su contraseña" prefWidth="250"/>
+            <Label id="lblPassword" text="Contraseña:" styleClass="label-form"/>
+            <PasswordField fx:id="txtPassword" promptText="Ingrese su contraseña" prefWidth="250" styleClass="campo"/>
 
             <!-- Botón de ingreso -->
             <Button fx:id="btnLogin" text="Ingresar"
-                    style="-fx-background-color: #1976d2; -fx-text-fill: white; -fx-font-weight: bold;"
                     prefWidth="150"
+                    styleClass="boton-login"
                     onAction="#ingresar"/>
 
             <!-- Mensaje -->
             <Label fx:id="lblMensaje" textFill="red" wrapText="true" prefWidth="250"
-                   style="-fx-font-size: 13px;"/>
+                   styleClass="mensaje-error"/>
 
         </VBox>
     </children>
