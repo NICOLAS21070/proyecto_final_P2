@@ -79,12 +79,25 @@
                            -fx-padding: 8 16;
                            -fx-font-weight: bold;" />
 
+            <!-- 🔥 Botón Registrarse agregado 🔥 -->
+            <Button fx:id="btnRegistrar"
+                    text="Registrarse"
+                    prefWidth="160"
+                    visible="false"
+                    onAction="#registrarNuevoCliente"
+                    style="-fx-background-color: #43A047;
+                           -fx-background-radius: 10;
+                           -fx-text-fill: white;
+                           -fx-padding: 8 16;
+                           -fx-font-weight: bold;" />
+
             <!-- Mensaje -->
             <Label fx:id="lblMensaje"
                    textFill="red"
                    wrapText="true"
                    prefWidth="250"
                    style="-fx-font-size: 13px;" />
+
         </VBox>
     </children>
 </AnchorPane>

@@ -59,6 +59,7 @@ public class BaseDatosLogistica {
         listaEnvios.add(envio);
     }
 
+
     // ================================
     // 🔹 Métodos de Incidencias
     // ================================

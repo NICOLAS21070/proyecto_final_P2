@@ -27,7 +27,7 @@
                 <ColumnConstraints halignment="LEFT" prefWidth="300"/>
             </columnConstraints>
 
-            <!-- ✅ Campo Origen (ComboBox) -->
+            <!-- Campo Origen -->
             <Label text="Origen:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
             <ComboBox fx:id="cbOrigen" GridPane.rowIndex="0" GridPane.columnIndex="1">
                 <items>
@@ -52,7 +52,7 @@
                 </items>
             </ComboBox>
 
-            <!-- ✅ Campo Destino (ComboBox) -->
+            <!-- Campo Destino -->
             <Label text="Destino:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
             <ComboBox fx:id="cbDestino" GridPane.rowIndex="1" GridPane.columnIndex="1">
                 <items>
@@ -114,14 +114,15 @@
             </VBox>
         </TitledPane>
 
-        <!-- Botón de cálculo -->
+        <!-- Botón Calcular -->
         <Button fx:id="btnCalcular" text="Calcular Tarifa"
                 onAction="#calcularTarifa"
                 style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25;"/>
 
+        <!-- BOTÓN DE CREAR (AZUL) -->
         <Button text="Crear Envío"
                 onAction="#crearEnvioDesdeCotizacion"
-                style="-fx-background-color: #28A745; -fx-text-fill: white; -fx-font-weight: bold;"
+                style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25;"
                 prefWidth="140" prefHeight="35"/>
 
         <!-- Resultado -->
@@ -131,9 +132,9 @@
             <Label fx:id="lblCosto" text="Costo: $0.00" style="-fx-font-size: 14;"/>
         </VBox>
 
+        <!-- Botón volver -->
         <Button text="⬅ Volver" onAction="#volver"
                 style="-fx-background-color: #0078D7; -fx-text-fill: white;"/>
     </VBox>
-
 
 </AnchorPane>

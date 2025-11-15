@@ -25,13 +25,21 @@ public class LoginController {
     @FXML
     private Button btnLogin;
 
+    @FXML
+    private Button btnRegistrar;   // 👉 FALTABA
+
     private final LogisticaFacade fachada = new LogisticaFacade();
 
     @FXML
     private void initialize() {
-        // Agregar opciones de tipo de usuario
         cbTipoUsuario.getItems().addAll("Administrador", "Cliente", "Repartidor");
         cbTipoUsuario.setValue("Cliente");
+
+        btnRegistrar.setVisible(false);   // 👉 AHORA SÍ EXISTE
+
+        cbTipoUsuario.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            btnRegistrar.setVisible("Cliente".equals(newVal));
+        });
     }
 
     @FXML
@@ -46,7 +54,6 @@ public class LoginController {
                 return;
             }
 
-            // Validación (simulada o real)
             if (fachada.validarUsuario(usuario, password, tipo)) {
                 abrirVista(tipo);
             } else {
@@ -56,6 +63,30 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
             lblMensaje.setText("❌ Error al intentar iniciar sesión.");
+        }
+    }
+
+    @FXML
+    private void registrarNuevoCliente() {   // 👉 NUEVO
+        try {
+            String usuario = txtUsuario.getText().trim();
+            String password = txtPassword.getText().trim();
+
+            if (usuario.isEmpty() || password.isEmpty()) {
+                lblMensaje.setText("⚠️ Completa usuario y contraseña para registrarte.");
+                return;
+            }
+
+            boolean exito = fachada.registrarCliente(usuario, password);
+
+            if (exito) {
+                lblMensaje.setText("✅ Cliente registrado exitosamente. Ahora inicia sesión.");
+            } else {
+                lblMensaje.setText("❌ Ya existe un cliente con ese usuario.");
+            }
+
+        } catch (Exception e) {
+            lblMensaje.setText("❌ Error al registrar cliente.");
         }
     }
 
