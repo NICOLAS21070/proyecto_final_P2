@@ -6,32 +6,76 @@
 <VBox spacing="25" alignment="CENTER"
       xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.RepartidorController">
+      fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.RepartidorController"
+      style="
+            -fx-background-color: white;
+            -fx-padding: 40 30;
+            -fx-background-radius: 15;
+            -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 10, 0.25, 0, 2);
+      ">
 
+    <!-- Botón 1 -->
     <Button fx:id="btnGestionarRepartidores"
             text="Gestionar Repartidores"
             prefWidth="250"
-            style="-fx-font-size: 18px;"
-            onAction="#gestionarRepartidores"/>
+            onAction="#gestionarRepartidores"
+            style="
+                -fx-background-color: linear-gradient(to bottom right, #2196F3, #1976D2);
+                -fx-text-fill: white;
+                -fx-font-size: 18px;
+                -fx-font-weight: bold;
+                -fx-background-radius: 10;
+                -fx-padding: 12 20;
+                -fx-cursor: hand;
+                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.20), 8, 0.3, 0, 2);
+            "/>
 
+    <!-- Botón 2 -->
     <Button fx:id="btnCambiarEstado"
             text="Cambiar Estado Repartidor"
             prefWidth="250"
-            style="-fx-font-size: 18px;"
-            onAction="#cambiarEstadoRepartidor"/>
+            onAction="#cambiarEstadoRepartidor"
+            style="
+                -fx-background-color: linear-gradient(to bottom right, #2196F3, #1976D2);
+                -fx-text-fill: white;
+                -fx-font-size: 18px;
+                -fx-font-weight: bold;
+                -fx-background-radius: 10;
+                -fx-padding: 12 20;
+                -fx-cursor: hand;
+                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.20), 8, 0.3, 0, 2);
+            "/>
 
-    <!-- ⭐ Botón Consultar Envíos -->
+    <!-- Botón 3 -->
     <Button fx:id="btnConsultarEnvios"
             text="Consultar Envíos"
             prefWidth="250"
-            style="-fx-font-size: 18px;"
-            onAction="#irAConsultarEnvios"/>
+            onAction="#irAConsultarEnvios"
+            style="
+                -fx-background-color: linear-gradient(to bottom right, #2196F3, #1976D2);
+                -fx-text-fill: white;
+                -fx-font-size: 18px;
+                -fx-font-weight: bold;
+                -fx-background-radius: 10;
+                -fx-padding: 12 20;
+                -fx-cursor: hand;
+                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.20), 8, 0.3, 0, 2);
+            "/>
 
-    <!-- 🔴 BOTÓN CERRAR SESIÓN -->
+    <!-- Botón 4 (Cerrar Sesión) -->
     <Button fx:id="btnCerrarSesion"
             text="Cerrar Sesión"
             prefWidth="250"
-            style="-fx-font-size: 18px; -fx-background-color: #d9534f; -fx-text-fill: white;"
-            onAction="#cerrarSesion"/>
+            onAction="#cerrarSesion"
+            style="
+                -fx-background-color: linear-gradient(to right, #e53935, #c62828);
+                -fx-text-fill: white;
+                -fx-font-size: 18px;
+                -fx-font-weight: bold;
+                -fx-background-radius: 10;
+                -fx-padding: 12 20;
+                -fx-cursor: hand;
+                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.20), 8, 0.3, 0, 2);
+            "/>
 
 </VBox>

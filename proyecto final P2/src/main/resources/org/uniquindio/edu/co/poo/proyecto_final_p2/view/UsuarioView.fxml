@@ -6,37 +6,86 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17.0.12"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.UsuarioController">
+            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.UsuarioController"
+            style="-fx-background-color: linear-gradient(to bottom, #ffffff, #E1F5FE);">
 
+    <!-- BARRA SUPERIOR -->
     <top>
-        <ToolBar style="-fx-background-color: #0288D1;">
+        <ToolBar style="-fx-background-color: #0288D1; -fx-padding: 10;">
             <Label text="📦 Panel del Usuario"
-                   style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" />
+                   style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+
             <Pane HBox.hgrow="ALWAYS"/>
+
             <Button fx:id="btnCerrarSesion"
                     text="Cerrar sesión"
-                    style="-fx-background-color: white; -fx-text-fill: #0288D1;"/>
+                    style="-fx-background-color: white;
+                           -fx-text-fill: #0288D1;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 10;
+                           -fx-padding: 6 16;" />
         </ToolBar>
     </top>
 
+    <!-- CONTENIDO CENTRAL -->
     <center>
-        <VBox alignment="CENTER" spacing="15" padding="25">
-            <Label text="Mis Envíos" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-            <TableView fx:id="tablaEnvios" prefWidth="700" prefHeight="300">
+        <VBox alignment="CENTER" spacing="20" padding="30">
+
+            <Label text="Mis Envíos"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #01579B;"/>
+
+            <!-- TABLA -->
+            <TableView fx:id="tablaEnvios"
+                       prefWidth="750"
+                       prefHeight="320"
+                       style="-fx-background-color: white;
+                              -fx-border-color: #81D4FA;
+                              -fx-border-width: 1.5;
+                              -fx-border-radius: 10;
+                              -fx-background-radius: 10;
+                              -fx-padding: 5;">
+
                 <columns>
-                    <TableColumn fx:id="colIdEnvio" text="ID Envío" prefWidth="80"/>
-                    <TableColumn fx:id="colOrigen" text="Origen" prefWidth="150"/>
-                    <TableColumn fx:id="colDestino" text="Destino" prefWidth="150"/>
-                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
-                    <TableColumn fx:id="colCosto" text="Costo" prefWidth="100"/>
+                    <TableColumn fx:id="colIdEnvio" text="ID Envío" prefWidth="100"
+                                 style="-fx-font-weight: bold;" />
+                    <TableColumn fx:id="colOrigen" text="Origen" prefWidth="180"
+                                 style="-fx-font-weight: bold;" />
+                    <TableColumn fx:id="colDestino" text="Destino" prefWidth="180"
+                                 style="-fx-font-weight: bold;" />
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="140"
+                                 style="-fx-font-weight: bold;" />
+                    <TableColumn fx:id="colCosto" text="Costo" prefWidth="120"
+                                 style="-fx-font-weight: bold;" />
                 </columns>
             </TableView>
 
-            <HBox spacing="10" alignment="CENTER">
-                <Button fx:id="btnNuevoEnvio" text="Crear Envío" prefWidth="140" />
-                <Button fx:id="btnCancelarEnvio" text="Cancelar Envío" prefWidth="140" />
-                <Button fx:id="btnVerDetalles" text="Ver Detalles" prefWidth="140" />
+            <!-- BOTONES -->
+            <HBox spacing="15" alignment="CENTER">
+
+                <Button fx:id="btnNuevoEnvio" text="Crear Envío" prefWidth="150"
+                        style="-fx-background-color: #0288D1;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 10;
+                               -fx-padding: 6 16;" />
+
+                <Button fx:id="btnCancelarEnvio" text="Cancelar Envío" prefWidth="150"
+                        style="-fx-background-color: #D32F2F;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 10;
+                               -fx-padding: 6 16;" />
+
+                <Button fx:id="btnVerDetalles" text="Ver Detalles" prefWidth="150"
+                        style="-fx-background-color: #455A64;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 10;
+                               -fx-padding: 6 16;" />
+
             </HBox>
+
         </VBox>
     </center>
+
 </BorderPane>

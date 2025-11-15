@@ -4,41 +4,107 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.ClienteController">
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.ClienteController"
+            style="-fx-background-color: #F5F7FA;">
 
     <!-- Barra superior -->
     <top>
-        <ToolBar style="-fx-background-color: #1976D2;">
-            <Label style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" text="📦 Panel del Cliente" />
+        <ToolBar style="-fx-background-color: #1976D2; -fx-padding: 10;">
+            <Label text="📦 Panel del Cliente"
+                   style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" />
             <Pane HBox.hgrow="ALWAYS" />
-            <Button fx:id="btnCerrarSesion" onAction="#cerrarSesion" style="-fx-background-color: white; -fx-text-fill: #1976D2;" text="Cerrar Sesión" />
+            <Button fx:id="btnCerrarSesion" text="Cerrar Sesión" onAction="#cerrarSesion"
+                    style="-fx-background-radius: 5;
+                           -fx-background-color: white;
+                           -fx-text-fill: #1976D2;
+                           -fx-font-weight: bold;
+                           -fx-padding: 6 15;
+                           -fx-cursor: hand;" />
         </ToolBar>
     </top>
 
     <!-- Zona central -->
     <center>
-        <VBox alignment="CENTER" spacing="20">
+        <VBox alignment="CENTER" spacing="25">
             <padding>
-                <Insets bottom="25" left="25" right="25" top="25" />
+                <Insets top="30" bottom="30" left="40" right="40"/>
             </padding>
 
-            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Gestión de Envíos" />
+            <Label text="Gestión de Envíos"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #424242;" />
 
-            <HBox alignment="CENTER" spacing="15">
-                <Button fx:id="btnCotizar" onAction="#cotizarEnvio" prefWidth="160" text="Cotizar y Crear Envío" />
-                <Button fx:id="btnModificarEnvio" onAction="#modificarEnvio" prefWidth="160" text="Buscar y/o Modificar Envío" />
-                <Button fx:id="btnCancelarEnvio" onAction="#cancelarEnvio" prefWidth="160" text="Cancelar Envío" />
+            <HBox alignment="CENTER" spacing="20">
+                <Button fx:id="btnCotizar" text="Cotizar y Crear Envío" prefWidth="180"
+                        onAction="#cotizarEnvio"
+                        style="-fx-background-color: #2196F3;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-padding: 10 15;
+                               -fx-background-radius: 8;
+                               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+                               -fx-cursor: hand;" />
+
+                <Button fx:id="btnModificarEnvio" text="Buscar y/o Modificar Envío" prefWidth="180"
+                        onAction="#modificarEnvio"
+                        style="-fx-background-color: #42A5F5;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-padding: 10 15;
+                               -fx-background-radius: 8;
+                               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+                               -fx-cursor: hand;" />
+
+                <Button fx:id="btnCancelarEnvio" text="Cancelar Envío" prefWidth="180"
+                        onAction="#cancelarEnvio"
+                        style="-fx-background-color: #EF5350;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-padding: 10 15;
+                               -fx-background-radius: 8;
+                               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+                               -fx-cursor: hand;" />
             </HBox>
 
             <Separator />
 
-            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Seguimiento y Pagos" />
+            <Label text="Seguimiento y Pagos"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #424242;" />
 
-            <HBox alignment="CENTER" spacing="15">
-                <Button fx:id="btnRastrear" onAction="#rastrearEnvio" prefWidth="160" text="Rastrear Envío" />
-                <Button fx:id="btnPagos" onAction="#consultarPagos" prefWidth="160" text="Pagos y Comprobantes" />
-                <Button fx:id="btnHistorial" onAction="#verHistorial" prefWidth="160" text="Historial de Envíos" />
+            <HBox alignment="CENTER" spacing="20">
+                <Button fx:id="btnRastrear" text="Rastrear Envío" prefWidth="180"
+                        onAction="#rastrearEnvio"
+                        style="-fx-background-color: #66BB6A;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-padding: 10 15;
+                               -fx-background-radius: 8;
+                               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+                               -fx-cursor: hand;" />
+
+                <Button fx:id="btnPagos" text="Pagos y Comprobantes" prefWidth="180"
+                        onAction="#consultarPagos"
+                        style="-fx-background-color: #29B6F6;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-padding: 10 15;
+                               -fx-background-radius: 8;
+                               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+                               -fx-cursor: hand;" />
+
+                <Button fx:id="btnHistorial" text="Historial de Envíos" prefWidth="180"
+                        onAction="#verHistorial"
+                        style="-fx-background-color: #AB47BC;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-padding: 10 15;
+                               -fx-background-radius: 8;
+                               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+                               -fx-cursor: hand;" />
             </HBox>
+
         </VBox>
     </center>
+
 </BorderPane>

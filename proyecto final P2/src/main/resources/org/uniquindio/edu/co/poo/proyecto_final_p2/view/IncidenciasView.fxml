@@ -3,49 +3,90 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
-
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+
 <VBox xmlns="http://javafx.com/javafx/17.0.12"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.IncidenciasController"
       alignment="CENTER"
-      spacing="15"
-      padding="25"
-      style="-fx-background-color: #FFF3E0;">
+      spacing="20"
+      padding="30"
+      style="-fx-background-color: linear-gradient(to bottom right, #FFF3E0, #FFE0B2);">
 
+    <!-- TÍTULO -->
     <Label text="⚠️ Reportar Incidencia"
-           style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+           style="-fx-font-size: 22px;
+                  -fx-font-weight: bold;
+                  -fx-text-fill: #E65100;" />
 
-    <GridPane hgap="10" vgap="10">
-        <Label text="ID del Envío:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <TextField fx:id="txtIdEnvio" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="220"/>
+    <!-- CONTENEDOR PRINCIPAL -->
+    <VBox spacing="18"
+          style="-fx-background-color: white;
+                 -fx-padding: 25;
+                 -fx-background-radius: 15;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 12, 0, 0, 3);">
 
-        <Label text="Tipo de Incidencia:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <ComboBox fx:id="comboTipo" GridPane.rowIndex="1" GridPane.columnIndex="1">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Retraso"/>
-                    <String fx:value="Paquete Dañado"/>
-                    <String fx:value="Dirección Incorrecta"/>
-                    <String fx:value="Otro"/>
-                </FXCollections>
-            </items>
-        </ComboBox>
+        <GridPane hgap="15" vgap="12">
 
-        <Label text="Descripción:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <TextArea fx:id="txtDescripcion"
-                  GridPane.rowIndex="2"
-                  GridPane.columnIndex="1"
-                  prefRowCount="4"
-                  wrapText="true"
-                  promptText="Describe brevemente lo sucedido..."/>
-    </GridPane>
+            <Label text="ID del Envío:"
+                   GridPane.rowIndex="0" GridPane.columnIndex="0"
+                   style="-fx-font-size: 14px;" />
+            <TextField fx:id="txtIdEnvio"
+                       GridPane.rowIndex="0" GridPane.columnIndex="1"
+                       prefWidth="230"
+                       style="-fx-background-color: #f5f5f5;
+                              -fx-background-radius: 8;
+                              -fx-padding: 6;" />
 
-    <HBox spacing="10" alignment="CENTER">
-        <Button fx:id="btnRegistrar" text="Registrar Incidencia"
-                style="-fx-background-color: #FB8C00; -fx-text-fill: white;"/>
-        <Button fx:id="btnVolver" text="Volver"
-                style="-fx-background-color: #BDBDBD;"/>
-    </HBox>
+            <Label text="Tipo de Incidencia:"
+                   GridPane.rowIndex="1" GridPane.columnIndex="0"
+                   style="-fx-font-size: 14px;" />
+            <ComboBox fx:id="comboTipo"
+                      GridPane.rowIndex="1" GridPane.columnIndex="1"
+                      style="-fx-background-color: #f5f5f5;
+                             -fx-background-radius: 8;
+                             -fx-padding: 4;">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Retraso"/>
+                        <String fx:value="Paquete Dañado"/>
+                        <String fx:value="Dirección Incorrecta"/>
+                        <String fx:value="Otro"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <Label text="Descripción:"
+                   GridPane.rowIndex="2" GridPane.columnIndex="0"
+                   style="-fx-font-size: 14px;" />
+
+            <TextArea fx:id="txtDescripcion"
+                      GridPane.rowIndex="2" GridPane.columnIndex="1"
+                      prefRowCount="4"
+                      wrapText="true"
+                      promptText="Describe brevemente lo sucedido..."
+                      style="-fx-background-color: #f5f5f5;
+                             -fx-background-radius: 10;
+                             -fx-padding: 8;" />
+        </GridPane>
+
+        <!-- BOTONES -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button fx:id="btnRegistrar" text="Registrar Incidencia"
+                    style="-fx-background-color: #EF6C00;
+                           -fx-text-fill: white;
+                           -fx-background-radius: 10;
+                           -fx-padding: 8 18;
+                           -fx-font-weight: bold;" />
+
+            <Button fx:id="btnVolver" text="Volver"
+                    style="-fx-background-color: #9E9E9E;
+                           -fx-text-fill: white;
+                           -fx-background-radius: 10;
+                           -fx-padding: 8 18;" />
+        </HBox>
+
+    </VBox>
+
 </VBox>

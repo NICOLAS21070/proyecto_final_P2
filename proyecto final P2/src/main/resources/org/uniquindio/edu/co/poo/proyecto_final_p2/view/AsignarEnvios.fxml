@@ -8,99 +8,136 @@
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.AsignarEnviosController"
-            id="rootAsignarEnvios">
+            style="
+                -fx-background-color: linear-gradient(to bottom, #E3F2FD, #BBDEFB);
+            ">
 
     <!-- TOP -->
     <top>
-        <Label id="lblTituloAsignar"
-               text="ASIGNAR ENVÍOS A REPARTIDORES"
+        <Label text="ASIGNAR ENVÍOS A REPARTIDORES"
                BorderPane.alignment="CENTER"
-               styleClass="titulo-asignar"/>
+               style="
+                    -fx-font-size: 26px;
+                    -fx-font-weight: bold;
+                    -fx-text-fill: #0D47A1;
+                    -fx-padding: 20;
+               "/>
     </top>
 
     <!-- CENTER -->
     <center>
-        <HBox id="contenedorTablas"
-              prefHeight="471.0" prefWidth="1197.0"
-              spacing="20" styleClass="contenedor-tablas">
+        <HBox prefHeight="471.0" prefWidth="1197.0"
+              spacing="20"
+              style="
+                    -fx-padding: 20;
+              ">
 
-            <padding>
-                <Insets bottom="20" left="20" right="20" top="20"/>
-            </padding>
+            <!-- Tabla de Envíos -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS"
+                  style="
+                        -fx-background-color: white;
+                        -fx-background-radius: 15;
+                        -fx-padding: 20;
+                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.25, 0, 2);
+                  ">
 
-            <children>
+                <Label text="Envíos pendientes"
+                       style="
+                            -fx-font-size: 18px;
+                            -fx-font-weight: bold;
+                            -fx-text-fill: #1976D2;
+                       "/>
 
-                <!-- Tabla de Envíos -->
-                <VBox id="seccionEnvios" spacing="10" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Label id="lblEnviosPendientes" text="Envíos pendientes" styleClass="subtitulo"/>
+                <TableView fx:id="tablaEnvios"
+                           prefWidth="450"
+                           style="
+                                -fx-background-radius: 10;
+                                -fx-border-radius: 10;
+                                -fx-border-color: #90CAF9;
+                           ">
+                    <columns>
+                        <TableColumn fx:id="colIdEnvio" prefWidth="80" text="ID"/>
+                        <TableColumn fx:id="colRemitente" prefWidth="150" text="Remitente"/>
+                        <TableColumn fx:id="colDestino" prefWidth="227" text="Destino"/>
+                        <TableColumn fx:id="colEstadoEnvio" prefWidth="152" text="Estado"/>
+                    </columns>
+                </TableView>
 
-                        <TableView fx:id="tablaEnvios"
-                                   id="tablaEnvios"
-                                   prefWidth="450"
-                                   styleClass="tabla-envios">
+            </VBox>
 
-                            <columns>
-                                <TableColumn fx:id="colIdEnvio" id="colIdEnvio" prefWidth="80" text="ID"/>
-                                <TableColumn fx:id="colRemitente" id="colRemitente" prefWidth="150" text="Remitente"/>
-                                <TableColumn fx:id="colDestino" id="colDestino" prefWidth="227" text="Destino"/>
-                                <TableColumn fx:id="colEstadoEnvio" id="colEstadoEnvio" prefWidth="152" text="Estado"/>
-                            </columns>
+            <!-- Tabla de Repartidores -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS"
+                  style="
+                        -fx-background-color: white;
+                        -fx-background-radius: 15;
+                        -fx-padding: 20;
+                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.25, 0, 2);
+                  ">
 
-                        </TableView>
-                    </children>
-                </VBox>
+                <Label text="Repartidores disponibles"
+                       style="
+                            -fx-font-size: 18px;
+                            -fx-font-weight: bold;
+                            -fx-text-fill: #1976D2;
+                       "/>
 
-                <!-- Tabla de Repartidores -->
-                <VBox id="seccionRepartidores" spacing="10" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Label id="lblRepartidores" text="Repartidores disponibles" styleClass="subtitulo"/>
+                <TableView fx:id="tablaRepartidores"
+                           prefWidth="450"
+                           style="
+                                -fx-background-radius: 10;
+                                -fx-border-radius: 10;
+                                -fx-border-color: #90CAF9;
+                           ">
+                    <columns>
+                        <TableColumn fx:id="colNombreRep" prefWidth="150" text="Nombre"/>
+                        <TableColumn fx:id="colTelefono" prefWidth="120" text="Teléfono"/>
+                        <TableColumn fx:id="colZona" prefWidth="194" text="Zona"/>
+                        <TableColumn fx:id="colEstadoRep" prefWidth="145" text="Estado"/>
+                    </columns>
+                </TableView>
 
-                        <TableView fx:id="tablaRepartidores"
-                                   id="tablaRepartidores"
-                                   prefWidth="450"
-                                   styleClass="tabla-repartidores">
-
-                            <columns>
-                                <TableColumn fx:id="colNombreRep" id="colNombreRep" prefWidth="150" text="Nombre"/>
-                                <TableColumn fx:id="colTelefono" id="colTelefono" prefWidth="120" text="Teléfono"/>
-                                <TableColumn fx:id="colZona" id="colZona" prefWidth="194" text="Zona"/>
-                                <TableColumn fx:id="colEstadoRep" id="colEstadoRep" prefWidth="145" text="Estado"/>
-                            </columns>
-
-                        </TableView>
-                    </children>
-                </VBox>
-
-            </children>
+            </VBox>
 
         </HBox>
     </center>
 
     <!-- BOTTOM -->
     <bottom>
-        <HBox id="contenedorBotones"
-              alignment="CENTER"
+        <HBox alignment="CENTER"
               spacing="15"
-              styleClass="contenedor-botones">
+              style="
+                    -fx-padding: 20;
+              ">
 
-            <padding>
-                <Insets bottom="20" left="20" right="20" top="20"/>
-            </padding>
+            <!-- Botón Asignar -->
+            <Button fx:id="btnAsignar"
+                    text="Asignar envío"
+                    onAction="#asignarEnvio"
+                    style="
+                        -fx-background-color: linear-gradient(to bottom right, #2196F3, #1976D2);
+                        -fx-text-fill: white;
+                        -fx-font-size: 18px;
+                        -fx-font-weight: bold;
+                        -fx-background-radius: 10;
+                        -fx-padding: 12 20;
+                        -fx-cursor: hand;
+                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.20), 8, 0.3, 0, 2);
+                    "/>
 
-            <children>
-                <Button fx:id="btnAsignar"
-                        id="btnAsignar"
-                        text="Asignar envío"
-                        onAction="#asignarEnvio"
-                        styleClass="btn-asignar"/>
-
-                <Button fx:id="btnVolver"
-                        id="btnVolver"
-                        text="Volver"
-                        onAction="#volver"
-                        styleClass="btn-volver"/>
-            </children>
+            <!-- Botón Volver -->
+            <Button fx:id="btnVolver"
+                    text="Volver"
+                    onAction="#volver"
+                    style="
+                        -fx-background-color: linear-gradient(to right, #616161, #424242);
+                        -fx-text-fill: white;
+                        -fx-font-size: 18px;
+                        -fx-font-weight: bold;
+                        -fx-background-radius: 10;
+                        -fx-padding: 12 24;
+                        -fx-cursor: hand;
+                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.20), 8, 0.3, 0, 2);
+                    "/>
 
         </HBox>
     </bottom>

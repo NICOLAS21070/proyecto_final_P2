@@ -7,66 +7,100 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.RastrearEnviosViewController"
             prefHeight="500" prefWidth="600"
-            style="-fx-background-color: #f4f6f7; -fx-padding: 20;">
+            style="-fx-background-color: linear-gradient(to bottom, #ffffff, #eef2f3); -fx-padding: 20;">
 
     <children>
 
+        <!-- Título -->
         <Label text="Rastrear Envío"
-               layoutX="220" layoutY="20"
-               style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+               layoutX="200" layoutY="20"
+               style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
 
+        <!-- ID -->
         <Label text="ID del Envío:"
-               layoutX="100" layoutY="100"/>
+               layoutX="80" layoutY="100"
+               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+
         <TextField fx:id="txtIdEnvio"
                    layoutX="220" layoutY="95"
-                   prefWidth="250"/>
+                   prefWidth="260"
+                   style="-fx-background-color: #ffffff;
+                          -fx-border-color: #bdc3c7;
+                          -fx-border-radius: 6;
+                          -fx-background-radius: 6;"/>
 
         <Button fx:id="btnBuscar"
                 text="Buscar"
-                layoutX="480" layoutY="95"
+                layoutX="490" layoutY="95"
                 onAction="#buscarEnvio"
-                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                style="-fx-background-color: #3498db;
+                       -fx-text-fill: white;
+                       -fx-font-weight: bold;
+                       -fx-background-radius: 6;"/>
 
+        <!-- Estado -->
         <Label text="Estado actual:"
-               layoutX="100" layoutY="160"/>
+               layoutX="80" layoutY="160"
+               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+
         <TextField fx:id="txtEstado"
                    layoutX="220" layoutY="155"
-                   prefWidth="250"
-                   editable="false"/>
+                   prefWidth="260"
+                   editable="false"
+                   style="-fx-background-color: #ecf0f1;
+                          -fx-border-color: #bdc3c7;
+                          -fx-border-radius: 6;
+                          -fx-background-radius: 6;"/>
 
+        <!-- Ubicación -->
         <Label text="Ubicación actual:"
-               layoutX="100" layoutY="210"/>
+               layoutX="80" layoutY="210"
+               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+
         <TextField fx:id="txtUbicacion"
                    layoutX="220" layoutY="205"
-                   prefWidth="250"
-                   editable="false"/>
+                   prefWidth="260"
+                   editable="false"
+                   style="-fx-background-color: #ecf0f1;
+                          -fx-border-color: #bdc3c7;
+                          -fx-border-radius: 6;
+                          -fx-background-radius: 6;"/>
 
-        <!-- 🔹 TÍTULO DE INCIDENCIAS -->
+        <!-- Incidencias -->
         <Label text="Incidencias:"
-               layoutX="100" layoutY="260"/>
+               layoutX="80" layoutY="260"
+               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
 
-        <!-- 🔹 TEXTAREA QUE NECESITA EL CONTROLADOR -->
         <TextArea fx:id="txtIncidencias"
                   layoutX="220" layoutY="255"
-                  prefWidth="250"
-                  prefHeight="120"
+                  prefWidth="260"
+                  prefHeight="130"
                   editable="false"
-                  wrapText="true" />
+                  wrapText="true"
+                  style="-fx-background-color: #ecf0f1;
+                         -fx-border-color: #bdc3c7;
+                         -fx-border-radius: 8;
+                         -fx-background-radius: 8;"/>
 
-        <!-- 🔹 BOTÓN PARA ABRIR INCIDENCIAS EN ALERTA -->
         <Button fx:id="btnIncidencias"
                 text="Ver Incidencias"
-                layoutX="100" layoutY="300"
-                prefWidth="100"
+                layoutX="80" layoutY="310"
+                prefWidth="120"
                 onAction="#verIncidencias"
-                style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                style="-fx-background-color: #e67e22;
+                       -fx-text-fill: white;
+                       -fx-font-weight: bold;
+                       -fx-background-radius: 8;"/>
 
+        <!-- Volver -->
         <Button fx:id="btnVolver"
                 text="Volver"
-                layoutX="250" layoutY="400"
-                prefWidth="100"
+                layoutX="250" layoutY="430"
+                prefWidth="120"
                 onAction="#volver"
-                style="-fx-background-color: #95a5a6; -fx-font-weight: bold;"/>
+                style="-fx-background-color: #95a5a6;
+                       -fx-font-weight: bold;
+                       -fx-background-radius: 8;"/>
 
     </children>
 </AnchorPane>

@@ -8,72 +8,136 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.CambiarEstadoRepartidorController">
+            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.CambiarEstadoRepartidorController"
+            style="-fx-background-color: linear-gradient(to bottom, #e3f2fd, #bbdefb);">
+
+    <!-- ============================================ -->
+    <!--                 CENTRO                       -->
+    <!-- ============================================ -->
 
     <center>
-        <VBox spacing="18">
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+        <VBox spacing="18" alignment="TOP_CENTER"
+              style="-fx-background-color: white;
+                     -fx-padding: 25;
+                     -fx-border-radius: 12;
+                     -fx-background-radius: 12;
+                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10,0,0,2);
+                     -fx-max-width: 620;">
 
-            <Label text="Cambiar estado del Repartidor" style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+            <Label text="Cambiar estado del Repartidor"
+                   style="-fx-font-size:20px;
+                          -fx-font-weight:bold;
+                          -fx-text-fill:#0d47a1;
+                          -fx-padding: 0 0 10 0;"/>
 
-            <!-- búsqueda -->
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="Documento (ID):"/>
-                <TextField fx:id="txtBuscarDocumento" promptText="Ingrese documento"/>
-                <Button text="Buscar" onAction="#buscarRepartidor"/>
+            <!-- BÚSQUEDA -->
+            <HBox spacing="10" alignment="CENTER_LEFT"
+                  style="-fx-padding: 10 0 0 0;">
+                <Label text="Documento (ID):"
+                       style="-fx-font-size:14px;"/>
+                <TextField fx:id="txtBuscarDocumento"
+                           promptText="Ingrese documento"
+                           style="-fx-background-radius: 8;
+                                  -fx-border-radius: 8;
+                                  -fx-padding: 6;"/>
+                <Button text="Buscar"
+                        onAction="#buscarRepartidor"
+                        style="-fx-background-color:#1976d2;
+                               -fx-text-fill:white;
+                               -fx-background-radius:10;
+                               -fx-padding:8 15;
+                               -fx-font-weight:bold;"/>
             </HBox>
 
-            <Separator/>
+            <Separator style="-fx-padding: 10 0 10 0;"/>
 
-            <!-- datos encontrados -->
+            <!-- DATOS ENCONTRADOS -->
             <GridPane hgap="10" vgap="10">
+
                 <columnConstraints>
-                    <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                    <ColumnConstraints halignment="RIGHT" minWidth="120"/>
                     <ColumnConstraints minWidth="300"/>
                 </columnConstraints>
 
                 <Label text="Usuario:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtUsuario" editable="false" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <TextField fx:id="txtUsuario" editable="false"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"
+                           style="-fx-background-color:#e3f2fd;
+                                  -fx-background-radius:6;
+                                  -fx-padding:6;"/>
 
                 <Label text="Nombre real:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtNombreReal" editable="false" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <TextField fx:id="txtNombreReal" editable="false"
+                           GridPane.rowIndex="1" GridPane.columnIndex="1"
+                           style="-fx-background-color:#e3f2fd;
+                                  -fx-background-radius:6;
+                                  -fx-padding:6;"/>
 
                 <Label text="Documento:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtDocumento" editable="false" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <TextField fx:id="txtDocumento" editable="false"
+                           GridPane.rowIndex="2" GridPane.columnIndex="1"
+                           style="-fx-background-color:#e3f2fd;
+                                  -fx-background-radius:6;
+                                  -fx-padding:6;"/>
 
                 <Label text="Teléfono:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtTelefono" editable="false" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <TextField fx:id="txtTelefono" editable="false"
+                           GridPane.rowIndex="3" GridPane.columnIndex="1"
+                           style="-fx-background-color:#e3f2fd;
+                                  -fx-background-radius:6;
+                                  -fx-padding:6;"/>
 
                 <Label text="Zona:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtZona" editable="false" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <TextField fx:id="txtZona" editable="false"
+                           GridPane.rowIndex="4" GridPane.columnIndex="1"
+                           style="-fx-background-color:#e3f2fd;
+                                  -fx-background-radius:6;
+                                  -fx-padding:6;"/>
 
                 <Label text="Estado actual:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtEstadoActual" editable="false" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                <TextField fx:id="txtEstadoActual" editable="false"
+                           GridPane.rowIndex="5" GridPane.columnIndex="1"
+                           style="-fx-background-color:#e3f2fd;
+                                  -fx-background-radius:6;
+                                  -fx-padding:6;"/>
             </GridPane>
 
-            <!-- elección nuevo estado -->
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="Nuevo estado:"/>
-                <ChoiceBox fx:id="choiceNuevoEstado">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Activo"/>
-                            <String fx:value="Inactivo"/>
-                        </FXCollections>
-                    </items>
-                </ChoiceBox>
+            <!-- NUEVO ESTADO -->
+            <HBox spacing="10" alignment="CENTER_LEFT"
+                  style="-fx-padding: 10 0 0 0;">
+                <Label text="Nuevo estado:"
+                       style="-fx-font-size:14px;"/>
 
-                <Button text="Guardar Estado" onAction="#guardarNuevoEstado"/>
+                <ChoiceBox fx:id="choiceNuevoEstado"
+                           style="-fx-background-radius: 8;
+                                  -fx-padding: 5;"/>
+
+                <Button text="Guardar Estado"
+                        onAction="#guardarNuevoEstado"
+                        style="-fx-background-color:#2e7d32;
+                               -fx-text-fill:white;
+                               -fx-background-radius:10;
+                               -fx-padding:8 15;
+                               -fx-font-weight:bold;"/>
             </HBox>
 
         </VBox>
     </center>
 
+    <!-- ============================================ -->
+    <!--                  ABAJO                       -->
+    <!-- ============================================ -->
+
     <bottom>
-        <HBox spacing="12" alignment="CENTER_RIGHT" style="-fx-padding: 12;">
-            <Button text="Volver" onAction="#volverMenu"/>
+        <HBox spacing="12" alignment="CENTER_RIGHT"
+              style="-fx-padding: 14;">
+            <Button text="Volver"
+                    onAction="#volverMenu"
+                    style="-fx-background-color:#c62828;
+                           -fx-text-fill:white;
+                           -fx-background-radius:10;
+                           -fx-padding:8 15;
+                           -fx-font-weight:bold;"/>
         </HBox>
     </bottom>
 

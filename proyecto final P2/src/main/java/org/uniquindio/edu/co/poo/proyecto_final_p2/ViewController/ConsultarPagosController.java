@@ -3,12 +3,20 @@ package org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.Envio;
 import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.Pago;
 import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.LogisticaFacade;
+
+import java.io.IOException;
 
 public class ConsultarPagosController {
 
@@ -27,7 +35,6 @@ public class ConsultarPagosController {
         configurarColumnas();
         cargarPagos();
     }
-
 
     private void configurarColumnas() {
         colIdEnvio.setCellValueFactory(new PropertyValueFactory<>("idEnvio"));
@@ -50,5 +57,24 @@ public class ConsultarPagosController {
         }
 
         tablaPagos.setItems(listaPagos);
+    }
+
+    // ========================================================
+    // BOTÓN VOLVER
+    // ========================================================
+    @FXML
+    private void volverMenu(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(
+                    "/org/uniquindio/edu/co/poo/proyecto_final_p2/View/ClienteView.fxml"
+            ));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -5,43 +5,80 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.GestionRepartidoresController">
+            fx:controller="org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController.GestionRepartidoresController"
+
+            style="-fx-background-color: linear-gradient(to bottom right, #E3F2FD, #BBDEFB);">
 
     <!-- ============================
             CONTENIDO PRINCIPAL
          ============================ -->
     <center>
-        <HBox spacing="40" style="-fx-padding: 20;">
+        <HBox spacing="40" style="-fx-padding: 25;">
 
             <!-- ====== FORMULARIO ====== -->
-            <VBox spacing="15" prefWidth="250">
+            <VBox spacing="15" prefWidth="280"
+                  style="-fx-background-color: white;
+                         -fx-padding: 20;
+                         -fx-background-radius: 12;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);">
 
                 <Label text="Agregar Repartidor"
-                       style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                       style="-fx-font-size: 20px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #0D47A1;" />
 
-                <Label text="Nombre Real:" />
-                <TextField fx:id="txtNombreReal" />
+                <Label text="Nombre Real:"
+                       style="-fx-font-size: 14px;" />
+                <TextField fx:id="txtNombreReal"
+                           style="-fx-background-color: #f5f5f5;
+                                  -fx-background-radius: 8;
+                                  -fx-padding: 6;" />
 
-                <Label text="Documento:" />
-                <TextField fx:id="txtDocumento" />
+                <Label text="Documento:"
+                       style="-fx-font-size: 14px;" />
+                <TextField fx:id="txtDocumento"
+                           style="-fx-background-color: #f5f5f5;
+                                  -fx-background-radius: 8;
+                                  -fx-padding: 6;" />
 
-                <Label text="Teléfono:" />
-                <TextField fx:id="txtTelefono" />
+                <Label text="Teléfono:"
+                       style="-fx-font-size: 14px;" />
+                <TextField fx:id="txtTelefono"
+                           style="-fx-background-color: #f5f5f5;
+                                  -fx-background-radius: 8;
+                                  -fx-padding: 6;" />
 
-                <Label text="Zona:" />
-                <TextField fx:id="txtZona" />
+                <Label text="Zona:"
+                       style="-fx-font-size: 14px;" />
+                <TextField fx:id="txtZona"
+                           style="-fx-background-color: #f5f5f5;
+                                  -fx-background-radius: 8;
+                                  -fx-padding: 6;" />
 
-                <Label text="Estado:" />
-                <TextField fx:id="txtEstado" />
+                <Label text="Estado:"
+                       style="-fx-font-size: 14px;" />
+                <TextField fx:id="txtEstado"
+                           style="-fx-background-color: #f5f5f5;
+                                  -fx-background-radius: 8;
+                                  -fx-padding: 6;" />
 
                 <Button text="Agregar"
                         onAction="#agregarRepartidorFormulario"
-                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;" />
+                        style="-fx-background-color: #1565C0;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 8;
+                               -fx-padding: 8 18;" />
 
             </VBox>
 
             <!-- ====== TABLA ====== -->
-            <TableView fx:id="tablaRepartidores" prefWidth="500">
+            <TableView fx:id="tablaRepartidores" prefWidth="500"
+                       style="-fx-background-color: white;
+                              -fx-border-radius: 10;
+                              -fx-background-radius: 10;
+                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);">
+
                 <columns>
                     <TableColumn fx:id="colNombreReal" text="Nombre" />
                     <TableColumn fx:id="colDocumento"  text="Cédula" />
@@ -59,10 +96,33 @@
          ============================ -->
     <bottom>
         <HBox spacing="20" alignment="CENTER" style="-fx-padding: 15;">
-            <Button text="Actualizar" onAction="#actualizarRepartidor" />
-            <Button text="Eliminar"   onAction="#eliminarRepartidor" />
-            <Button text="Consultar"  onAction="#consultarRepartidor" />
-            <Button text="Volver"     onAction="#volverMenu" />
+            <Button text="Actualizar"
+                    onAction="#actualizarRepartidor"
+                    style="-fx-background-color: #1976D2;
+                           -fx-text-fill: white;
+                           -fx-background-radius: 8;
+                           -fx-padding: 8 16;" />
+
+            <Button text="Eliminar"
+                    onAction="#eliminarRepartidor"
+                    style="-fx-background-color: #D32F2F;
+                           -fx-text-fill: white;
+                           -fx-background-radius: 8;
+                           -fx-padding: 8 16;" />
+
+            <Button text="Consultar"
+                    onAction="#consultarRepartidor"
+                    style="-fx-background-color: #0288D1;
+                           -fx-text-fill: white;
+                           -fx-background-radius: 8;
+                           -fx-padding: 8 16;" />
+
+            <Button text="Volver"
+                    onAction="#volverMenu"
+                    style="-fx-background-color: #757575;
+                           -fx-text-fill: white;
+                           -fx-background-radius: 8;
+                           -fx-padding: 8 16;" />
         </HBox>
     </bottom>
 
