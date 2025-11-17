@@ -240,7 +240,7 @@ public class LogisticaFacade {
     public void agregarRepartidor(String usuario, String contrasena, String nombreReal,
                                   String documento, String telefono, String zona, String estado) {
 
-        Repartidor nuevo = new Repartidor(usuario, contrasena, nombreReal, documento, telefono, estado, zona);
+        Repartidor nuevo = new Repartidor(usuario, contrasena, nombreReal, documento, telefono, zona,estado);
 
         // Agregar al observable (tabla)
         BaseDatosLogistica.getInstancia().getListaRepartidores().add(nuevo);
