@@ -1,5 +1,6 @@
 package org.uniquindio.edu.co.poo.proyecto_final_p2.ViewController;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ public class GestionarUsuariosAdminController {
     @FXML private PasswordField txtContrasena;
     @FXML private ChoiceBox<String> cbRol;
     @FXML private TableView<Usuario> tablaUsuarios;
-    @FXML private TableColumn<Usuario, String> colNombre, colRol;
+    @FXML private TableColumn<Usuario, String> colNombre, colCorreo, colRol;
 
     private final LogisticaFacade fachada = new LogisticaFacade();
 
@@ -27,8 +28,21 @@ public class GestionarUsuariosAdminController {
         cbRol.getSelectionModel().selectFirst();
 
         // Configurar columnas
-        colNombre.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombreUsuario()));
-        colRol.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getTipo()));
+        colNombre.setCellValueFactory(data ->
+                new SimpleStringProperty(data.getValue().getNombreUsuario())
+        );
+
+        colCorreo.setCellValueFactory(data ->
+                new SimpleStringProperty(
+                        data.getValue().getCorreo() == null
+                                ? "Sin correo"
+                                : data.getValue().getCorreo()
+                )
+        );
+
+        colRol.setCellValueFactory(data ->
+                new SimpleStringProperty(data.getValue().getTipo())
+        );
 
         // Cargar usuarios existentes
         actualizarTabla();
@@ -40,13 +54,21 @@ public class GestionarUsuariosAdminController {
         String nombre = txtNombre.getText().trim();
         String contrasena = txtContrasena.getText().trim();
         String rol = cbRol.getValue();
+        String correo = txtCorreo.getText().trim();
 
         if (nombre.isEmpty() || contrasena.isEmpty()) {
             mostrarAlerta(Alert.AlertType.WARNING, "Campos vacíos", "Por favor completa todos los campos.");
             return;
         }
 
-        fachada.agregarUsuario(nombre, contrasena, rol);
+        // Si quieres usar el correo:
+        if (correo.isEmpty()) {
+            correo = "Sin correo";
+        }
+
+        // 👉 Usa el constructor con correo
+        fachada.agregarUsuario(nombre, contrasena, rol, correo);
+
         mostrarAlerta(Alert.AlertType.INFORMATION, "Usuario agregado",
                 "Se agregó correctamente el usuario \"" + nombre + "\" como " + rol + ".");
         limpiarCampos();
@@ -68,7 +90,7 @@ public class GestionarUsuariosAdminController {
         actualizarTabla();
     }
 
-    // 🔹 Actualizar usuario seleccionado (💥 método que faltaba)
+    // 🔹 Actualizar usuario seleccionado
     @FXML
     private void actualizarUsuario() {
         Usuario seleccionado = tablaUsuarios.getSelectionModel().getSelectedItem();
@@ -86,7 +108,6 @@ public class GestionarUsuariosAdminController {
             return;
         }
 
-        // Llamamos a la fachada (debes tener un método allí para actualizar)
         fachada.actualizarUsuario(seleccionado.getNombreUsuario(), nuevoNombre, nuevaContrasena, nuevoRol);
 
         mostrarAlerta(Alert.AlertType.INFORMATION, "Usuario actualizado",
@@ -114,13 +135,16 @@ public class GestionarUsuariosAdminController {
     // 🔹 Refresca los datos en la tabla
     private void actualizarTabla() {
         ObservableList<Usuario> usuarios = fachada.obtenerUsuarios();
+        System.out.println("🔎 Usuarios cargados en tabla: " + usuarios.size());
         tablaUsuarios.setItems(usuarios);
+        tablaUsuarios.refresh();
     }
 
     // 🔹 Limpia los campos del formulario
     private void limpiarCampos() {
         txtNombre.clear();
         txtContrasena.clear();
+        txtCorreo.clear();
         cbRol.getSelectionModel().selectFirst();
     }
 

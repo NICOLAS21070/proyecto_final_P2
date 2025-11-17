@@ -84,7 +84,7 @@ public class GestionRepartidoresController {
         if (r == null) { showError("Selecciona un repartidor primero."); return; }
 
         TextInputDialog dialog = new TextInputDialog(
-                r.getNombreReal()+","+r.getDocumento()+","+r.getTelefono()+","+r.getZonaCobertura()+","+r.getEstadoDisponibilidad()
+                r.getNombreReal()+"--"+r.getDocumento()+"--"+r.getTelefono()+"--"+r.getZonaCobertura()+"--"+r.getEstadoDisponibilidad()
         );
         dialog.setHeaderText("Modificar repartidor (nombre,doc,tel,zona,estado)");
         dialog.showAndWait().ifPresent(datos -> {

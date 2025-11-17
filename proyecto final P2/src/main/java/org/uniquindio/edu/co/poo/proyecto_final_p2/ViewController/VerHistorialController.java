@@ -15,6 +15,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.Envio;
 import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.LogisticaFacade;
+import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.SesionUsuario;
+import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.Usuario;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -61,7 +63,17 @@ public class VerHistorialController {
 
     private void cargarDatos() {
         listaHistorial.clear();
-        listaHistorial.addAll(logisticaFacade.listarEnvios());
+
+        Usuario actual = SesionUsuario.getUsuarioActual();
+
+        listaHistorial.addAll(
+                logisticaFacade.listarEnvios()
+                        .stream()
+                        .filter(e -> e.getUsuario() != null &&
+                                e.getUsuario().getNombreUsuario().equals(actual.getNombreUsuario()))
+                        .toList()
+        );
+
         tablaHistorial.setItems(listaHistorial);
     }
 

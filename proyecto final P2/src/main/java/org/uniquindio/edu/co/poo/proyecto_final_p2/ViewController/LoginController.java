@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.LogisticaFacade;
+import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.SesionUsuario;
+import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.Usuario;
 
 public class LoginController {
 
@@ -54,63 +56,74 @@ public class LoginController {
                 return;
             }
 
-            if (fachada.validarUsuario(usuario, password, tipo)) {
-                abrirVista(tipo);
-            } else {
+            Usuario u = fachada.obtenerUsuario(usuario, password);
+
+            if (u == null) {
                 lblMensaje.setText("❌ Usuario o contraseña incorrectos.");
+                return;
             }
+
+            if (!u.getTipo().equalsIgnoreCase(tipo)) {
+                lblMensaje.setText("⚠️ Ese usuario no coincide con el tipo seleccionado.");
+                return;
+            }
+
+            // Guardar usuario logueado
+            SesionUsuario.setUsuarioActual(u);
+
+            abrirVista(tipo);
 
         } catch (Exception e) {
             e.printStackTrace();
             lblMensaje.setText("❌ Error al intentar iniciar sesión.");
         }
-    }
+}
 
-    @FXML
-    private void registrarNuevoCliente() {   // 👉 NUEVO
-        try {
-            String usuario = txtUsuario.getText().trim();
-            String password = txtPassword.getText().trim();
+@FXML
+private void registrarNuevoCliente() {   // 👉 NUEVO
+    try {
+        String usuario = txtUsuario.getText().trim();
+        String password = txtPassword.getText().trim();
 
-            if (usuario.isEmpty() || password.isEmpty()) {
-                lblMensaje.setText("⚠️ Completa usuario y contraseña para registrarte.");
-                return;
-            }
-
-            boolean exito = fachada.registrarCliente(usuario, password);
-
-            if (exito) {
-                lblMensaje.setText("✅ Cliente registrado exitosamente. Ahora inicia sesión.");
-            } else {
-                lblMensaje.setText("❌ Ya existe un cliente con ese usuario.");
-            }
-
-        } catch (Exception e) {
-            lblMensaje.setText("❌ Error al registrar cliente.");
+        if (usuario.isEmpty() || password.isEmpty()) {
+            lblMensaje.setText("⚠️ Completa usuario y contraseña para registrarte.");
+            return;
         }
-    }
 
-    private void abrirVista(String tipo) {
-        try {
-            String fxml = switch (tipo) {
-                case "Administrador" -> "AdminView.fxml";
-                case "Repartidor" -> "RepartidorView.fxml";
-                default -> "ClienteView.fxml";
-            };
+        boolean exito = fachada.registrarCliente(usuario, password);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/org/uniquindio/edu/co/poo/proyecto_final_p2/view/" + fxml
-            ));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) txtUsuario.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Panel de " + tipo);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            lblMensaje.setText("❌ Error al abrir la vista de " + tipo);
+        if (exito) {
+            lblMensaje.setText("✅ Cliente registrado exitosamente. Ahora inicia sesión.");
+        } else {
+            lblMensaje.setText("❌ Ya existe un cliente con ese usuario.");
         }
+
+    } catch (Exception e) {
+        lblMensaje.setText("❌ Error al registrar cliente.");
     }
+}
+
+private void abrirVista(String tipo) {
+    try {
+        String fxml = switch (tipo) {
+            case "Administrador" -> "AdminView.fxml";
+            case "Repartidor" -> "RepartidorView.fxml";
+            default -> "ClienteView.fxml";
+        };
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/org/uniquindio/edu/co/poo/proyecto_final_p2/view/" + fxml
+        ));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) txtUsuario.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Panel de " + tipo);
+        stage.show();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        lblMensaje.setText("❌ Error al abrir la vista de " + tipo);
+    }
+}
 }

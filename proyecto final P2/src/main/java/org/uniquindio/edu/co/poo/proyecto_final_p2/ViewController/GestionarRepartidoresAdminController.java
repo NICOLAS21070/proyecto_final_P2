@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.BaseDatosLogistica;
 import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.LogisticaFacade;
 import org.uniquindio.edu.co.poo.proyecto_final_p2.Model.Repartidor;
 

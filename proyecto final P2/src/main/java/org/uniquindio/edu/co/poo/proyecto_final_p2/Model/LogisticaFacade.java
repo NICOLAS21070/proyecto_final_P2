@@ -10,7 +10,7 @@ public class LogisticaFacade {
 
     public LogisticaFacade() {
         this.baseDatos = BaseDatosLogistica.getInstancia();
-        inicializarUsuariosPorDefecto();
+
     }
 
     // 🔹 LISTAR INCIDENCIAS
@@ -79,17 +79,10 @@ public class LogisticaFacade {
         return FXCollections.observableArrayList(baseDatos.getListaUsuarios());
     }
 
-    private void inicializarUsuariosPorDefecto() {
-        if (baseDatos.getListaUsuarios().isEmpty()) {
-            baseDatos.agregarUsuario(new Usuario("celis", "123", "Administrador"));
-            baseDatos.agregarUsuario(new Usuario("cliente1", "pass", "Cliente"));
-            baseDatos.agregarUsuario(new Usuario("repartidor1", "abc", "Repartidor"));
-            System.out.println("✅ Usuarios por defecto cargados correctamente.");
-        }
-    }
+
 
     // ==========================================================
-    // ✅ 🔹 FALTA: REGISTRAR CLIENTE
+    // REGISTRAR CLIENTE
     // ==========================================================
 
     public boolean registrarCliente(String nombreUsuario, String contrasena) {
@@ -145,7 +138,8 @@ public class LogisticaFacade {
 
         double costo = calcularCosto(peso, volumen, prioridad, seguro, fragil, firma, prioridadExtra);
 
-        Usuario usuarioTemporal = new Usuario(remitente, "N/A", "Cliente");
+
+        Usuario usuarioTemporal = SesionUsuario.getUsuarioActual();
 
         Direccion dirOrigen = new Direccion(origen);
         Direccion dirDestino = new Direccion(destino);
@@ -156,7 +150,7 @@ public class LogisticaFacade {
 
         Envio envio = new Envio(
                 null,
-                remitente,
+                usuarioTemporal.getNombreUsuario(),
                 dirOrigen,
                 dirDestino,
                 usuarioTemporal,
@@ -169,9 +163,11 @@ public class LogisticaFacade {
 
         baseDatos.agregarEnvio(envio);
 
-        System.out.println("📦 Envío creado correctamente con ID: " + envio.getIdEnvio());
+        System.out.println("📦 Envío creado por: " + usuarioTemporal.getNombreUsuario());
+
         return envio;
     }
+
 
     public void actualizarEstadoEnvio(String idEnvio, String nuevoEstado) {
         for (Envio envio : baseDatos.getListaEnvios()) {
@@ -241,13 +237,16 @@ public class LogisticaFacade {
         return baseDatos.getListaRepartidores();
     }
 
-    public void agregarRepartidor(String usuario, String contrasena,
-                                  String nombreReal, String documento,
-                                  String telefono, String zonaCobertura,
-                                  String estado) {
+    public void agregarRepartidor(String usuario, String contrasena, String nombreReal,
+                                  String documento, String telefono, String zona, String estado) {
 
-        Repartidor nuevo = new Repartidor(usuario, contrasena, nombreReal, documento, telefono, zonaCobertura, estado);
-        baseDatos.getListaRepartidores().add(nuevo);
+        Repartidor nuevo = new Repartidor(usuario, contrasena, nombreReal, documento, telefono, estado, zona);
+
+        // Agregar al observable (tabla)
+        BaseDatosLogistica.getInstancia().getListaRepartidores().add(nuevo);
+
+        // Agregar a listaUsuarios para login
+        BaseDatosLogistica.getInstancia().getListaUsuarios().add(nuevo);
     }
 
     public void eliminarRepartidor(String documento) {
@@ -280,4 +279,10 @@ public class LogisticaFacade {
             }
         }
     }
+
+    public void agregarUsuario(String nombreUsuario, String contrasena, String tipoUsuario, String correo) {
+        Usuario nuevo = new Usuario(nombreUsuario, contrasena, tipoUsuario, correo);
+        baseDatos.agregarUsuario(nuevo);
+    }
+
 }

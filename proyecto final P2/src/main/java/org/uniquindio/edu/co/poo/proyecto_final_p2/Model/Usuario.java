@@ -5,11 +5,22 @@ public class Usuario {
     private String nombreUsuario;
     private String contrasena;
     private String tipo;
+    private String correo;
 
+    // 👉 Constructor viejo (sin correo)
     public Usuario(String nombreUsuario, String contrasena, String tipo) {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.tipo = tipo;
+        this.correo = "Sin correo"; // valor por defecto
+    }
+
+    // 👉 Constructor nuevo (con correo)
+    public Usuario(String nombreUsuario, String contrasena, String tipo, String correo) {
+        this.nombreUsuario = nombreUsuario;
+        this.contrasena = contrasena;
+        this.tipo = tipo;
+        this.correo = correo;
     }
 
     public String getNombreUsuario() {
@@ -34,5 +45,13 @@ public class Usuario {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 }

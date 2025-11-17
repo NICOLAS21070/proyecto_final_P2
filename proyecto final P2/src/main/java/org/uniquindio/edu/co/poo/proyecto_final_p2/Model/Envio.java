@@ -2,9 +2,12 @@ package org.uniquindio.edu.co.poo.proyecto_final_p2.Model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Envio {
+public class Envio implements EnvioObservable {
 
     private static final AtomicInteger contador = new AtomicInteger(1);
 
@@ -28,6 +31,8 @@ public class Envio {
     private Paquete paquete;
     private Tarifa costo;
     private String descripcion;
+
+
 
     public Envio(String idEnvio, String remitente, Direccion origen, Direccion destino,
                  Usuario usuario, Paquete paquete, Tarifa costo, boolean estadoIgnorado) {
@@ -82,4 +87,32 @@ public class Envio {
     public StringProperty destinoProperty() { return destino; }
     public StringProperty estadoProperty() { return estado; }
     public StringProperty repartidorProperty() { return repartidor; }
+
+    private EstadoEnvio estadoActual;
+
+    public void setEstado(EstadoEnvio estado) {
+        this.estadoActual = estadoActual;
+    }
+
+    public String getEstadoNombre() {
+        return estadoActual.getNombre();
+    }
+
+    public void avanzarEstado() {
+        estadoActual.avanzar(this);
+    }
+
+    private List<EnvioObserver> observers = new ArrayList<>();
+
+    @Override
+    public void agregarObserver(EnvioObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notificarObservers() {
+        for (EnvioObserver obs : observers) {
+            obs.onEnvioActualizado(this);
+        }
+    }
 }
